@@ -1,77 +1,97 @@
 #include "stdafx.h"
 #include "points.h"
 
+//Vec4 decl
+Vec4::Vec4(float a, float b, float c, float d) { val[0] = a, val[1] = b, val[2] = c; val[3] = d; }
+
+Vec4::Vec4(const Vec4 &pn) {
+	val[0] = pn[0];
+	val[1] = pn[1];
+	val[2] = pn[2];
+	val[3] = pn[3];
+}
+
+Vec4& Vec4::operator =(const Vec4 &pn) {
+	val[0] = pn[0];
+	val[1] = pn[1];
+	val[2] = pn[2];
+	val[3] = pn[3];
+	return *this;
+}
+
+Vec4 operator -(const Vec4 &a, const Vec4 &b)
+{
+	return Vec4(a[0] - b[0], a[1] - b[1], a[2] - b[2], a[3] - b[3]);
+}
+
+Vec4 operator +(const Vec4 &a, const Vec4 &b)
+{
+	return Vec4(a[0] + b[0], a[1] + b[1], a[2] + b[2], a[3] + b[3]);
+}
+
+Vec4 operator *(float num, const Vec4& v) {
+	return Vec4(v[0] * num, v[1] * num, v[2] * num, v[3] * num);
+}
+
 //Vec3 decl
-
-Vec3::Vec3() {}
-
-Vec3::Vec3(float a, float b, float c) : x(a), y(b), z(c) {}
+Vec3::Vec3(float a, float b, float c) { val[0] = a, val[1] = b, val[2] = c; }
 
 Vec3::Vec3(const Vec3 &pn) {
-	x = pn.x;
-	y = pn.y;
-	z = pn.z;
+	val[0] = pn[0];
+	val[1] = pn[1];
+	val[2] = pn[2];
 }
 
 Vec3& Vec3::operator =(const Vec3 &pn) {
-	x = pn.x;
-	y = pn.y;
-	z = pn.z;
+	val[0] = pn[0];
+	val[1] = pn[1];
+	val[2] = pn[2];
 	return *this;
 }
 
 Vec3 operator -(const Vec3 &a, const Vec3 &b)
 {
-	return Vec3(a.x - b.x, a.y - b.y, a.z - b.z);
+	return Vec3(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
 }
 
 Vec3 operator +(const Vec3 &a, const Vec3 &b)
 {
-	return Vec3(a.x + b.x, a.y + b.y, a.z + b.z);
+	return Vec3(a[0] + b[0], a[1] + b[1], a[2] + b[2]);
 }
 
 Vec3 operator *(float num, const Vec3& v) {
-	return Vec3(v.x * num, v.y * num, v.z * num);
+	return Vec3(v[0] * num, v[1] * num, v[2] * num);
 }
-
-Vec3::~Vec3() {}
 
 //Vec2 decl
 
-Vec2::Vec2() {}
+Vec2::Vec2(float a, float b) { val[0] = a, val[1] = b; }
 
-Vec2::Vec2(float a, float b) : x(a), y(b) {}
+Vec2::Vec2(int a, int b)  { val[0] = a, val[1] = b; }
 
-Vec2::Vec2(int a, int b) : x(a), y(b) {}
-
-Vec2::Vec2(const Vec2 &pn) {
-	x = pn.x;
-	y = pn.y;
-}
+Vec2::Vec2(const Vec2 &pn) { val[0] = pn.val[0], val[1] = pn.val[1]; }
 
 Vec2& Vec2::operator =(const Vec2 &pn) {
-	x = pn.x;
-	y = pn.y;
+	val[0] = pn[0];
+	val[1] = pn[1];
 	return *this;
 }
 
 
 Vec2 operator -(const Vec2 &a, const Vec2 &b)
 {
-	return Vec2(a.x - b.x, a.y - b.y);
+	return Vec2(a[0] - b[0], a[1] - b[1]);
 }
 
 Vec2 operator +(const Vec2 &a, const Vec2 &b)
 {
-	return Vec2(a.x + b.x, a.y + b.y);
+	return Vec2(a[0] + b[0], a[1] + b[1]);
 }
 
 Vec2 operator *(float num, const Vec2& v) {
-	return Vec2(v.x * num, v.y * num);
+	return Vec2(v[0] * num, v[1] * num);
 }
 
-
-Vec2::~Vec2() {}
 
 //Polygon decl
 

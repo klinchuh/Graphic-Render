@@ -148,6 +148,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="math.h" />
+    <ClInclude Include="Matrix3.h" />
+    <ClInclude Include="Matrix4.h" />
     <ClInclude Include="points.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="scene.h" />
@@ -156,6 +158,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Matrix3.cpp" />
+    <ClCompile Include="Matrix4.cpp" />
     <ClCompile Include="points.cpp" />
     <ClCompile Include="Render.cpp" />
     <ClCompile Include="scene.cpp" />

@@ -3,29 +3,29 @@
 #include <cmath>
 //Function decl
 
-float _length(const Vec3 &v) {
-	return sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+float Math::_length(const Vec3 &v) {
+	return sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
 }
 
-float _square(const Vec2 &v1, const Vec2 &v2, const Vec2 &v3) {
-	Vec3 val = crossPrt(Vec3{ v1.x, v2.x, v3.x }, Vec3{ v1.y, v2.y, v3.y });
-	return abs(val.x + val.y + val.z) / 2.;
+float Math::_square(const Vec2 &v1, const Vec2 &v2, const Vec2 &v3) {
+	Vec3 val = crossPrt(Vec3(v1[0], v2[0], v3[0]), Vec3(v1[1], v2[1], v3[1]));
+	return abs(val[0] + val[1] + val[2]) / 2.;
 }
 
-Vec3 normalize(const Vec3 &v)
+Vec3 Math::normalize(const Vec3 &v)
 {
 	Vec3 answer = v;
 	float length = _length(answer);
 
-	answer.x /= length;
-	answer.y /= length;
-	answer.z /= length;
+	answer[0] /= length;
+	answer[1] /= length;
+	answer[2] /= length;
 
 	return answer;
 }
 
 
-bool intersectionTrglPn(const Vec2 &v1, const Vec2 &v2, const Vec2 &v3, const Vec2 &pn) {
+bool Math::intersectionTrglPn(const Vec2 &v1, const Vec2 &v2, const Vec2 &v3, const Vec2 &pn) {
 	if (abs(_square(v1, v2, v3) - (_square(v1, v2, pn) + _square(v1, v3, pn) + _square(v2, v3, pn))) < 0.01) {
 		return true;
 	}
@@ -34,33 +34,33 @@ bool intersectionTrglPn(const Vec2 &v1, const Vec2 &v2, const Vec2 &v3, const Ve
 	}
 }
 
-float scalarPrt3(const Vec3 &a, const Vec3 &b)
+float Math::scalarPrt3(const Vec3 &a, const Vec3 &b)
 {
-	return a.x * b.x + a.y * b.y + a.z * b.z;
+	return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 }
 
-float scalarPrt2(const Vec2 &a, const Vec2 &b)
+float Math::scalarPrt2(const Vec2 &a, const Vec2 &b)
 {
-	return a.x * b.x + a.y * b.y;
+	return a[0] * b[0] + a[1] * b[1];
 }
 
-Vec3 crossPrt(const Vec3 &v1, const Vec3 &v2) {
-	return Vec3{ v1.y * v2.z - v1.z * v2.y, - v1.x * v2.z + v1.z * v2.x, v1.x * v2.y - v1.y * v2.x };
+Vec3 Math::crossPrt(const Vec3 &v1, const Vec3 &v2) {
+	return Vec3{ v1[1] * v2[2] - v1[2] * v2[1], - v1[0] * v2[2] + v1[2] * v2[0], v1[0] * v2[1] - v1[1] * v2[0] };
 }
 
-Vec3 rotate(const Vec3 &pn, float alpha, float beta, float zet) {
+Vec3 Math::rotate(const Vec3 &pn, float alpha, float beta, float zet) {
 	Vec3 answer;
-	answer.x = cos(alpha) * pn.x + sin(alpha) * pn.z;
-	answer.y = pn.y;
-	answer.z = -sin(alpha) * pn.x + cos(alpha) * pn.z;
+	answer[0] = cos(alpha) * pn[0] + sin(alpha) * pn[2];
+	answer[1] = pn[1];
+	answer[2] = -sin(alpha) * pn[0] + cos(alpha) * pn[2];
 
-	answer.x = answer.x;
-	answer.y = answer.y * cos(beta) + answer.z * (-sin(beta));
-	answer.z = answer.y * sin(beta) + answer.z * (cos(beta));
+	answer[0] = answer[0];
+	answer[1] = answer[1] * cos(beta) + answer[2] * (-sin(beta));
+	answer[2] = answer[1] * sin(beta) + answer[2] * (cos(beta));
 
-	answer.x = cos(zet) * answer.x + answer.y * sin(zet);
-	answer.y = -sin(zet) *	answer.x + answer.y * cos(zet);
-	answer.z = answer.z;
+	answer[0] = cos(zet) * answer[0] + answer[1] * sin(zet);
+	answer[1] = -sin(zet) *	answer[0] + answer[1] * cos(zet);
+	answer[2] = answer[2];
 
 	return answer;
 }
