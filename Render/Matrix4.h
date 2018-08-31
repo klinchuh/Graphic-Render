@@ -11,18 +11,6 @@ public:
 	Matrix4() {}
 	~Matrix4() {}
 
-	//нужен для погружения в 4-ое пространство...
-	Matrix4(const Matrix3 &mtr, const Vec3 &vec) {
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				m[i][j] = mtr[i][j];
-			}
-		}
-		for (int i = 0; i < 3; i++) {
-			m[3][i] = vec[i];
-		}
-	}
-
 	Matrix4(const Matrix4 &ma);
 
 	explicit Matrix4(const float arr[3][3]) { memcpy(m, arr, 9 * sizeof(float)); }

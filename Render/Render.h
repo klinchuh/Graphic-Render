@@ -12,15 +12,14 @@
 //choose render with/without textures
 const bool RENDER_WITHOUT_TEXTURES = 0;
 
-//1 - make light more realistic, but take a slow
-//0 - simplest type lighting 
-const bool UPLIGHT = 1;
-
 //{x, y, -z} - vector of light
 const Vec3 LIGHT_VECTOR = {0., 0., 1.};
 
 //chop off all with +z({0; +inf}) coord
 const bool CHOP_OFF = 1;
+
+//
+const bool USE_GOURAUD_SHADING = 1;
 
 
 
@@ -59,10 +58,15 @@ private:
 
 
 	//Drawing a triangle with monotone color
-	static void drawTriangle(Vec3 v1, Vec3 v2, Vec3 v3, const TGAColor &color, TGAImage &im);
+	static void drawTriangle(Vec3 v1, Vec3 v2, Vec3 v3, 
+		Vec3 vn1, Vec3 vn2, Vec3 vn3,
+		const TGAColor &color, TGAImage &im);
 
 	//Drawing a triangle with texture
-	static void drawTriangleWT(Vec3 v0, Vec3 v1, Vec3 v2, Vec2 vt0, Vec2 vt1, Vec2 vt3, TGAImage &resultImage, const TGAImage & texture, float intensivity);
+	static void drawTriangleWT(Vec3 v0, Vec3 v1, Vec3 v2,
+		Vec2 vt0, Vec2 vt1, Vec2 vt2,
+		Vec3 vn0, Vec3 vn1, Vec3 vn2,
+		TGAImage & resultImage, const TGAImage &texture);
 
 	//Get light Intensity of faces
 	static float getPolLightIntensity(const Vec3 &a, const Vec3 &b, const Vec3 &c);
