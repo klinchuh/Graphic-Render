@@ -95,9 +95,9 @@ Vec2 operator *(float num, const Vec2& v) {
 
 //Polygon decl
 
-Polygon::Polygon() {}
+Polygon3::Polygon3() {}
 
-Polygon::Polygon(std::ifstream &is) {
+Polygon3::Polygon3(std::ifstream &is) {
 	int v1, v2, v3, vn1, vn2, vn3, vt1, vt2, vt3;
 	char trash;
 	is >> v1 >> trash >> vt1 >> trash >> vn1 >> v2 >> trash >> vt2 >> trash >> vn2 >> v3 >> trash >> vt3 >> trash >> vn3;
@@ -113,17 +113,17 @@ Polygon::Polygon(std::ifstream &is) {
 	texture[2] = vt3 - 1;
 }
 
-Polygon::Polygon(const Polygon &pl) {
+Polygon3::Polygon3(const Polygon3 &pl) {
 	memcpy(vertex, pl.vertex, 12);
 	memcpy(normal, pl.normal, 12);
 	memcpy(texture, pl.texture, 12);
 }
 
-Polygon& Polygon::operator =(const Polygon &pl) {
+Polygon3& Polygon3::operator =(const Polygon3 &pl) {
 	memcpy(vertex, pl.vertex, 12);
 	memcpy(normal, pl.normal, 12);
 	memcpy(texture, pl.texture, 12);
 	return *this;
 }  
 
-Polygon::~Polygon() {}
+Polygon3::~Polygon3() {}

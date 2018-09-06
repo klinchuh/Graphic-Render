@@ -10,6 +10,11 @@ Scene::~Scene() { }
 
 bool Scene::loadScene(const std::string &fileName)
 {
+	vertex.clear();
+	polygons.clear();
+	textureVertex.clear();
+	vertexNormals.clear();
+
 	std::ifstream is(fileName);
 	std::string s;
 
@@ -39,7 +44,7 @@ bool Scene::loadScene(const std::string &fileName)
 		}
 
 		if (s == "f") {
-			polygons.push_back(Polygon(is));
+			polygons.push_back(Polygon3(is));
 		}
 
 	}

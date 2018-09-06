@@ -74,8 +74,6 @@ Vec4 operator*(const Matrix4 & a, const Vec4 & b)
 	return answer;
 }
 
-
-
 void Matrix4::makeZeroMatrix()
 {
 	memset(m, 0, sizeof(float) * 16);

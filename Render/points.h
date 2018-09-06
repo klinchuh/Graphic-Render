@@ -91,17 +91,17 @@ public:
 };
 
 //Polygon def
-struct Polygon
+struct Polygon3
 {
 	int vertex[3], normal[3], texture[3];
 
-	Polygon();
+	Polygon3();
 
-	Polygon(std::ifstream &is);
+	Polygon3(std::ifstream &is);
 
-	Polygon(const Polygon&);
+	Polygon3(const Polygon3&);
 
-	Polygon& operator =(const Polygon&);
+	Polygon3& operator =(const Polygon3&);
 
-	~Polygon();
+	~Polygon3();
 };

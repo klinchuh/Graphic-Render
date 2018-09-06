@@ -11,7 +11,7 @@
 struct Scene
 {
 	std::vector <Vec3> vertex;
-	std::vector <Polygon> polygons;
+	std::vector <Polygon3> polygons;
 	std::vector <Vec2> textureVertex;
 	std::vector <Vec3> vertexNormals;
 
