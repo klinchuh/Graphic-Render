@@ -20,8 +20,8 @@ private:
 	/*TO DO*/
 	//static void CALLBACK timerProc(HWND hWnd, UINT message, UINT_PTR idEvent, DWORD time);
 
-	/*loading a scene into memory*/
-	static void InitScene(HWND hWnd);
+	/*preset editboxes*/
+	static void InitWindow(HWND hWnd);
 
 	/*redraw a scene*/
 	static void reDraw(HWND hWnd);
@@ -31,6 +31,9 @@ private:
 
 	/*procceser*/
 	static INT_PTR CALLBACK DlgProcceser(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+
+	/*load scene and texture into memory*/
+	static void loadScene(const char* objPath, const char* tgaPath);
 
 public:
 	/*function for init all program*/

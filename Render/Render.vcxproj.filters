@@ -86,8 +86,16 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Object Include="obj\african_head.obj">
+    <Text Include="obj\african_head.obj">
       <Filter>Resource Files</Filter>
-    </Object>
+    </Text>
+    <Text Include="obj\cat.obj">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ribbon1.mfcribbon-ms">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

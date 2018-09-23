@@ -11,15 +11,21 @@ Scene *Application::mainScene;
 	reDraw(hWnd);
 }*/
 //------------------------------------------------------------------------------------
-void Application::InitScene(HWND hWnd) {
+void Application::InitWindow(HWND hWnd) {
 	mainScene = new Scene();
-
-	assert(mainScene->loadScene("obj/african_head.obj"));
-	assert(mainScene->loadTexture("obj/african_head_diffuse.tga"));
 
 	SetDlgItemText(hWnd, IDC_EDIT1, "7 0 7");
 	SetDlgItemText(hWnd, IDC_EDIT2, "1.5 0 1.5");
 	SetDlgItemText(hWnd, IDC_EDIT3, "0 1 0");
+
+	SetDlgItemText(hWnd, IDC_OBJPATH, "obj/african_head.obj");
+	SetDlgItemText(hWnd, IDC_TGAPATH, "obj/african_head_diffuse.tga");
+}
+//------------------------------------------------------------------------------------
+void Application::loadScene(const char * objPath, const char * tgaPath)
+{
+	assert(mainScene->loadScene(objPath));
+	assert(mainScene->loadTexture(tgaPath));
 }
 //------------------------------------------------------------------------------------
 void Application::reDraw(HWND hWnd) {
@@ -81,41 +87,68 @@ INT_PTR CALLBACK Application::DlgProcceser(HWND hWnd, UINT message, WPARAM wPara
 	UNREFERENCED_PARAMETER(lParam);
 	switch (message)
 	{
+		//--------------------------------------------------------------------------
 		case WM_INITDIALOG: {
-			InitScene(hWnd);
+			InitWindow(hWnd);
 			//SetTimer(hWnd, Timer_ID1, 10000, timerProc);
 			return (INT_PTR)TRUE;
 		}
-
+		//--------------------------------------------------------------------------
 		case WM_CREATE: {
 			break;
 		}
-
+		//--------------------------------------------------------------------------
 		case WM_COMMAND: {
 
 			switch (LOWORD(wParam)) {
-
+			//--------------------------------------------------------------------------
 			case IDC_reDraw: {
+
+				SetDlgItemText(hWnd, IDC_STATUS2, "Статус: Происходит ростиризация...");
+
 				reDraw(hWnd);
+
+				SetDlgItemText(hWnd, IDC_STATUS2, "Статус: Ожидание");
+
 				break;
 			}
-
+			//--------------------------------------------------------------------------
 			case IDC_CHECK1: {
+
 				Render::RENDER_WITHOUT_TEXTURES ^= 1;
+
 				break;
 			}
+			//--------------------------------------------------------------------------
+			case IDC_LOADSCENE: {
 
-			case IDCANCEL:
+				SetDlgItemText(hWnd, IDC_STATUS1, "Статус: сцена загружается...");
+
+				char str1[255], str2[255];
+
+				GetDlgItemText(hWnd, IDC_OBJPATH, str1, 255);
+				GetDlgItemText(hWnd, IDC_TGAPATH, str2, 255);
+
+				loadScene(str1, str2);
+
+				SetDlgItemText(hWnd, IDC_STATUS1, "Статус: сцена загружена");
+				SetDlgItemText(hWnd, IDC_STATUS2, "Статус: Ожидание");
+				EnableWindow(GetDlgItem(hWnd, IDC_reDraw), 1);
+
+				break;
+			}
+			//--------------------------------------------------------------------------
 			case IDOK:
 			{
 				EndDialog(hWnd, LOWORD(wParam));
 				return (INT_PTR)TRUE;
 			}
+			//--------------------------------------------------------------------------
 			break;
 			}
 			break;
 		}
-
+		//--------------------------------------------------------------------------
 		case WM_PAINT: {
 			PAINTSTRUCT ps;
 			drawToBuffer(hWnd);
@@ -128,7 +161,7 @@ INT_PTR CALLBACK Application::DlgProcceser(HWND hWnd, UINT message, WPARAM wPara
 			EndPaint(hWnd, &ps);
 			break;
 		}
-
+		//--------------------------------------------------------------------------
 		case WM_CLOSE: {
 			EndDialog(hWnd, LOWORD(wParam));
 		}
@@ -136,3 +169,4 @@ INT_PTR CALLBACK Application::DlgProcceser(HWND hWnd, UINT message, WPARAM wPara
 
 	return (INT_PTR)FALSE;
 }
+

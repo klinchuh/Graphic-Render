@@ -24,4 +24,15 @@ struct Scene
 	bool loadScene(const std::string &fileName);
 
 	bool loadTexture(const std::string &fileName);
+
+	void clearSc() {
+		vertex.clear();
+		polygons.clear();
+		textureVertex.clear();
+		vertexNormals.clear();
+	}
+
+	void clearTx() {
+		sceneTexture.clear();
+	}
 };

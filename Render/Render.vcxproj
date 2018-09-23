@@ -183,7 +183,17 @@
     <Image Include="obj\african_head_diffuse.tga" />
   </ItemGroup>
   <ItemGroup>
-    <Object Include="obj\african_head.obj" />
+    <Text Include="obj\african_head.obj">
+      <FileType>Document</FileType>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="obj\cat.obj">
+      <FileType>Document</FileType>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ribbon1.mfcribbon-ms" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
