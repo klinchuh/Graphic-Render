@@ -28,7 +28,7 @@ public:
 
 private:
 
-	static float zBuffer[sizeX * sizeY];
+	static int zBuffer[sizeX * sizeY];
 
 	static Matrix4 perspectivViewMatrix, camViewMatrix, viewPort;
 
@@ -61,6 +61,10 @@ private:
 	/*Get light Intensity of faces*/
 	static float getPolLightIntensity(const Vec3 &a, const Vec3 &b, const Vec3 &c);
 
+	/*get shade inesity by Gouraund algorithm*/
+	static float getGouraudShadeIntesity(const Vec3 &vn0, const Vec3 &vn1, const Vec3 &vn2,
+		bool second, float alpha, float beta, float zet);
+
 	/*Rotate scene to currect(OZ to camera) position 
 	and transform to display coord*/
 	static void transformToDisplayCoord(std::vector <Vec3> &list);
@@ -76,9 +80,9 @@ public:
 	static void lookAt(const Vec3 &eye, const Vec3 &center, const Vec3 &up);
 
 	/*
-	set Camera Scale as [-h/2;h/2]x[-w/2;w/2]x[0;1]
+	Scale Camera from [-1;1]x[-1;1]x[0;1] to [x;x+w]x[y;y+h]x[0;1]
 	*/
-	static void setCameraScale(int x, int y, int h, int w);
+	static void setViewPotrMatrix(int x, int y, int w, int h);
 
 	/*Save scene in tga format file*/
 	static bool compileScene(Scene * sc);

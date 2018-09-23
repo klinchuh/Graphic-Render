@@ -76,16 +76,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="C:\Users\Ilya Klimko\Downloads\african_head_diffuse.tga">
-      <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="african_head.obj">
-      <Filter>Resource Files</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="Render.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>

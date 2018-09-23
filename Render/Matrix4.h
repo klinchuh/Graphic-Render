@@ -1,5 +1,6 @@
 #pragma once
 #include "points.h"
+#include <cassert>
 
 class Matrix4
 {
@@ -27,9 +28,15 @@ public:
 	Matrix4& operator = (const Matrix4 &ma);
 
 
-	float* operator [] (int idx) { return m[idx]; }
+	float* operator [] (int idx) { 
+		assert(idx < 4);
+		return m[idx];
+	}
 
-	const float* operator [] (int idx) const { return m[idx]; }
+	const float* operator [] (int idx) const { 
+		assert(idx < 4); 
+		return m[idx]; 
+	}
 
 
 

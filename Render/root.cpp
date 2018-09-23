@@ -14,13 +14,12 @@ Scene *Application::mainScene;
 void Application::InitScene(HWND hWnd) {
 	mainScene = new Scene();
 
-	assert(mainScene->loadScene("african_head.obj"));
-	assert(mainScene->loadTexture("african_head_diffuse.tga"));
+	assert(mainScene->loadScene("obj/african_head.obj"));
+	assert(mainScene->loadTexture("obj/african_head_diffuse.tga"));
 
 	SetDlgItemText(hWnd, IDC_EDIT1, "7 0 7");
 	SetDlgItemText(hWnd, IDC_EDIT2, "1.5 0 1.5");
 	SetDlgItemText(hWnd, IDC_EDIT3, "0 1 0");
-	SetDlgItemText(hWnd, IDC_EDIT4, "2 2");
 }
 //------------------------------------------------------------------------------------
 void Application::reDraw(HWND hWnd) {
@@ -36,17 +35,14 @@ void Application::reDraw(HWND hWnd) {
 	ss << str << ' ';
 	GetDlgItemText(hWnd, IDC_EDIT3, str, 255);
 	ss << str << ' ';
-	GetDlgItemText(hWnd, IDC_EDIT4, str, 255);
-	ss << str << ' ';
 
 	ss >> eye[0] >> eye[1] >> eye[2]
 		>> center[0] >> center[1] >> center[2]
-		>> up[0] >> up[1] >> up[2]
-		>> scale[0] >> scale[1];
+		>> up[0] >> up[1] >> up[2];
 
 	Render::lookAt(eye, center, up);
 
-	Render::setCameraScale(0, 0, Render::sizeX, Render::sizeY);
+	Render::setViewPotrMatrix(0, 0, Render::sizeX, Render::sizeY);
 
 	Render::compileScene(mainScene);
 

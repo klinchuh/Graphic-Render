@@ -177,12 +177,6 @@
     <ClCompile Include="tgaimage.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="african_head.obj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="C:\Users\Ilya Klimko\Downloads\african_head_diffuse.tga" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="Render.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
