@@ -179,6 +179,12 @@
   <ItemGroup>
     <ResourceCompile Include="Render.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="obj\african_head_diffuse.tga" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="obj\african_head.obj" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
