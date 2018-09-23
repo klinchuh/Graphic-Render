@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "points.h"
 
 //Vec4 decl

@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Matrix4.h"
 #include <iostream>
 
@@ -74,7 +73,7 @@ Vec4 operator*(const Matrix4 & a, const Vec4 & b)
 	return answer;
 }
 
-void Matrix4::makeZeroMatrix()
+void Matrix4::setIdentityMatrix()
 {
 	memset(m, 0, sizeof(float) * 16);
 	for (int i = 0; i < 4; i++) {

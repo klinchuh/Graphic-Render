@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Matrix3.h"
 
 
@@ -63,7 +62,7 @@ Vec3 operator*(const Vec3 & a, const Matrix3 & b)
 
 
 
-void Matrix3::makeZeroMatrix()
+void Matrix3::setIdentityMatrix()
 {
 	memset(m, 0, sizeof(float) * 9);
 	for (int i = 0; i < 3; i++) {

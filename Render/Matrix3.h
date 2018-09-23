@@ -1,7 +1,6 @@
 #pragma once
 #include "points.h" 
 
-
 class Matrix3
 {
 private:
@@ -46,8 +45,11 @@ public:
 
 	friend Vec3 operator * (const Vec3 &a, const Matrix3 &b);
 
-	//to do:
-	void makeZeroMatrix();
+	/*set as identify Matrix:
+	[1, 0, 0]
+	[0, 1, 0]
+	[0, 0, 1]*/
+	void setIdentityMatrix();
 
 };
 

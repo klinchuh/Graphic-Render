@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "scene.h"
 #include <iostream>
 
@@ -51,7 +50,7 @@ bool Scene::loadScene(const std::string &fileName)
 
 	return true;
 }
-
+//------------------------------------------------------------------------------------
 bool Scene::loadTexture(const std::string &fileName) {
 	return sceneTexture.read_tga_file(fileName.c_str());
 }

@@ -1,6 +1,5 @@
 #pragma once
 #include "points.h"
-#include "Matrix3.h"
 
 class Matrix4
 {
@@ -13,7 +12,7 @@ public:
 
 	Matrix4(const Matrix4 &ma);
 
-	explicit Matrix4(const float arr[3][3]) { memcpy(m, arr, 9 * sizeof(float)); }
+	explicit Matrix4(const float arr[4][4]) { memcpy(m, arr, 16 * sizeof(float)); }
 
 
 	Matrix4(float f1, float f2, float f3, float f4, float f5,
@@ -44,7 +43,11 @@ public:
 
 	friend Vec4 operator *(const Matrix4 & a, const Vec4 & b);
 
-	//to do:
-	void makeZeroMatrix();
+	/*set as identify Matrix:
+	[1, 0, 0, 0]
+	[0, 1, 0, 0]
+	[0, 0, 1, 0]
+	[0, 0, 0, 1]*/
+	void setIdentityMatrix();
 };
 

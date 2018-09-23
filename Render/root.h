@@ -1,45 +1,40 @@
 #pragma once
-#include "stdafx.h"
-#include <windows.h>
-#include "tgaimage.h"
-#include "scene.h"
-#include "Render.h"
-#include "resource.h"
+#include <Windows.h>
 #include <sstream>
 #include <iostream>
 #include <cassert>
+#include "tgaimage.h"
+#include "scene.h"
+#include "Render.h"
 
 class Application {
-public:
-
-	//back buffer
+private:
+	/*back buffer*/
 	static HDC bufHdc;
 	static HBITMAP bufBMP;
 
-	//data for scene
+	/*data for scene*/
 	static Scene *mainScene;
 
 
-	//TO DO
-	static void CALLBACK timerProc(HWND hWnd, UINT message, UINT_PTR idEvent, DWORD time);
+	/*TO DO*/
+	//static void CALLBACK timerProc(HWND hWnd, UINT message, UINT_PTR idEvent, DWORD time);
 
-	//loading a scene into memory
+	/*loading a scene into memory*/
 	static void InitScene(HWND hWnd);
 
-	//redraw a scene
+	/*redraw a scene*/
 	static void reDraw(HWND hWnd);
 
-	//copy data from Render::colorBuffer[] to the screen(back buffer)
+	/*copy data from Render::colorBuffer[] to the screen(back buffer)*/
 	static void drawToBuffer(HWND hWnd);
 
-	//function for init all program
-	static int InitProgram(HINSTANCE hInst, HINSTANCE hPrevInstance,
-		LPWSTR lpCmdLine, int nCmdShow);
+	/*procceser*/
+	static INT_PTR CALLBACK DlgProcceser(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-	//procceser
-	static INT_PTR CALLBACK About(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+public:
+	/*function for init all program*/
+	static void InitProgram(HINSTANCE hInst, HINSTANCE hPrevInstance,
+		LPWSTR lpCmdLine, int nCmdShow);
 };
 
-HDC Application::bufHdc;
-HBITMAP Application::bufBMP;
-Scene *Application::mainScene;
