@@ -5,14 +5,8 @@
 #include "Matrix4.h"
 
 
-
-//constants
-
-//choose render with/without textures
-
 //{x, y, -z} - vector of light
 const Vec3 LIGHT_VECTOR = {0., 0., 1.};
-
 
 
 //main class with most improtant functions
@@ -33,22 +27,18 @@ private:
 
 	static const float ZBUFFERDEEP;
 
-
 	Render();
 	~Render();
 
 	/*1 - reset zBuffer
-	2 - reset colorBuffer
-	*/
+	2 - reset colorBuffer*/
 	static void resetParam();
 
 	/*Drawing a line*/
 	static void drawLine(int x0, int y0, int x1, int y1, TGAImage &im, const TGAColor &color);
 
-
 	/*Descript texture's point color*/
 	static TGAColor getTextureColor(const TGAImage &intx, const Vec2 &vt0, const Vec2 &vt1, const Vec2 &vt2, bool second, float alpha, float beta, float zet);
-
 
 	/*The easyest method of drawing empty triangle*/
 	static void drawEmpTriangle(std::vector <Vec3> lst, TGAImage &im);
@@ -80,9 +70,7 @@ public:
 	up - up of camera*/
 	static void lookAt(const Vec3 &eye, const Vec3 &center, const Vec3 &up);
 
-	/*
-	Scale Camera from [-1;1]x[-1;1]x[0;1] to [x;x+w]x[y;y+h]x[0;1]
-	*/
+	/*Scale Camera from [-1;1]x[-1;1]x[0;1] to [x;x+w]x[y;y+h]x[0;1]*/
 	static void setViewPort(int x, int y, int w, int h);
 
 	/*Save scene in tga format file*/

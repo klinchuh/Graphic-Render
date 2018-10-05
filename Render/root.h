@@ -16,7 +16,6 @@ private:
 	/*data for scene*/
 	static Scene *mainScene;
 
-
 	/*TO DO*/
 	//static void CALLBACK timerProc(HWND hWnd, UINT message, UINT_PTR idEvent, DWORD time);
 

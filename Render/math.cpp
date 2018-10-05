@@ -1,18 +1,19 @@
 #include "math.h"
 #include <cmath>
-//Function decl
+
 
 float Math::_length(const Vec3 &v) {
 	return sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
 }
+
 
 float Math::_square(const Vec2 &v1, const Vec2 &v2, const Vec2 &v3) {
 	Vec3 val = crossPrt(Vec3(v1[0], v2[0], v3[0]), Vec3(v1[1], v2[1], v3[1]));
 	return abs(val[0] + val[1] + val[2]) / 2.;
 }
 
-Vec3 Math::normalize(const Vec3 &v)
-{
+
+Vec3 Math::normalize(const Vec3 &v) {
 	Vec3 answer = v;
 	float length = _length(answer);
 
@@ -33,19 +34,21 @@ bool Math::intersectionTrglPn(const Vec2 &v1, const Vec2 &v2, const Vec2 &v3, co
 	}
 }
 
-float Math::scalarPrt3(const Vec3 &a, const Vec3 &b)
-{
+
+float Math::scalarPrt3(const Vec3 &a, const Vec3 &b) {
 	return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 }
 
-float Math::scalarPrt2(const Vec2 &a, const Vec2 &b)
-{
+
+float Math::scalarPrt2(const Vec2 &a, const Vec2 &b) {
 	return a[0] * b[0] + a[1] * b[1];
 }
+
 
 Vec3 Math::crossPrt(const Vec3 &v1, const Vec3 &v2) {
 	return Vec3{ v1[1] * v2[2] - v1[2] * v2[1], - v1[0] * v2[2] + v1[2] * v2[0], v1[0] * v2[1] - v1[1] * v2[0] };
 }
+
 
 Vec3 Math::rotate(const Vec3 &pn, float alpha, float beta, float zet) {
 	Vec3 answer;
