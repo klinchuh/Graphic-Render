@@ -86,16 +86,16 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="obj\african_head.obj">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="obj\cat.obj">
-      <Filter>Resource Files</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="ribbon1.mfcribbon-ms">
       <Filter>Resource Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="obj\cat.obj">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="obj\african_head.obj">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>

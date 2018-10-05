@@ -182,14 +182,14 @@
     <Image Include="obj\african_head_diffuse.tga" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="obj\african_head.obj">
+    <Media Include="obj\african_head.obj">
       <FileType>Document</FileType>
-    </Text>
+    </Media>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="obj\cat.obj">
+    <Media Include="obj\cat.obj">
       <FileType>Document</FileType>
-    </Text>
+    </Media>
   </ItemGroup>
   <ItemGroup>
     <None Include="ribbon1.mfcribbon-ms" />
