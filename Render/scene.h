@@ -5,7 +5,6 @@
 #include <string>
 #include "tgaimage.h"
 
-//Scene def
 
 //struct for containing main data of scene
 struct Scene
@@ -25,12 +24,14 @@ struct Scene
 
 	bool loadTexture(const std::string &fileName);
 
+
 	void clearSc() {
 		vertex.clear();
 		polygons.clear();
 		textureVertex.clear();
 		vertexNormals.clear();
 	}
+
 
 	void clearTx() {
 		sceneTexture.clear();

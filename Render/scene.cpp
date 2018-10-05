@@ -5,11 +5,10 @@
 
 Scene::Scene() { }
 
-
 Scene::~Scene() { }
 
-bool Scene::loadScene(const std::string &fileName)
-{
+
+bool Scene::loadScene(const std::string &fileName) {
 	clearSc();
 
 	std::ifstream is(fileName);
@@ -54,7 +53,8 @@ bool Scene::loadScene(const std::string &fileName)
 
 	return true;
 }
-//------------------------------------------------------------------------------------
+
+
 bool Scene::loadTexture(const std::string &fileName) {
 	clearTx();
 	return sceneTexture.read_tga_file(fileName.c_str());

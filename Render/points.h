@@ -2,7 +2,7 @@
 #include <string>
 #include <fstream>
 
-//Vec4 def
+
 class Vec4
 {
 public:
@@ -28,7 +28,7 @@ public:
 	~Vec4() {}
 };
 
-//Vec3 def
+
 class Vec3
 {
 public:
@@ -51,14 +51,16 @@ public:
 
 	inline const float& operator [](int num) const { return val[num]; }
 
+
 	static Vec3 project4To3(const Vec4 &vc) {
 		return Vec3(vc[0] / vc[3], vc[1] / vc[3], vc[2] / vc[3]);
 	}
 
+
 	~Vec3() {}
 };
 
-//Vec2 def
+
 struct Vec2
 {
 private:
@@ -90,7 +92,7 @@ public:
 	~Vec2() {}
 };
 
-//Polygon def
+
 struct Polygon3
 {
 	int vertex[3], normal[3], texture[3];

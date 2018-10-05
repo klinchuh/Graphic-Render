@@ -6,12 +6,13 @@ Matrix3& Matrix3::operator = (const Matrix3 &ma) {
 	return *this;
 }
 
+
 Matrix3::Matrix3(const Matrix3 &ma) {
 	memcpy(m, ma.m, 9 * sizeof(float));
 }
 
-Matrix3 operator+(const Matrix3 & a, const Matrix3 & b)
-{
+
+Matrix3 operator + (const Matrix3 & a, const Matrix3 & b) {
 	Matrix3 answer;
 	memset(answer.m, 0, 9 * sizeof(float));
 	for (int i = 0; i < 3; i++) {
@@ -22,8 +23,8 @@ Matrix3 operator+(const Matrix3 & a, const Matrix3 & b)
 	return answer;
 }
 
-Matrix3 operator-(const Matrix3 & a, const Matrix3 & b)
-{
+
+Matrix3 operator - (const Matrix3 & a, const Matrix3 & b) {
 	Matrix3 answer;
 	memset(answer.m, 0, 9 * sizeof(float));
 	for (int i = 0; i < 3; i++) {
@@ -34,8 +35,8 @@ Matrix3 operator-(const Matrix3 & a, const Matrix3 & b)
 	return answer;
 }
 
-Matrix3 operator*(const Matrix3 & a, const Matrix3 & b)
-{
+
+Matrix3 operator * (const Matrix3 & a, const Matrix3 & b) {
 	Matrix3 answer;
 	memset(answer.m, 0, 9 * sizeof(float));
 	for (int i = 0; i < 3; i++) {
@@ -48,8 +49,8 @@ Matrix3 operator*(const Matrix3 & a, const Matrix3 & b)
 	return answer;
 }
 
-Vec3 operator*(const Vec3 & a, const Matrix3 & b)
-{
+
+Vec3 operator * (const Vec3 & a, const Matrix3 & b) {
 	Vec3 answer;
 	memset(answer.val, 0, 3 * sizeof(float));
 	for (int i = 0; i < 3; i++) {
@@ -61,9 +62,7 @@ Vec3 operator*(const Vec3 & a, const Matrix3 & b)
 }
 
 
-
-void Matrix3::setIdentityMatrix()
-{
+void Matrix3::setIdentityMatrix() {
 	memset(m, 0, sizeof(float) * 9);
 	for (int i = 0; i < 3; i++) {
 		m[i][i] = 1;

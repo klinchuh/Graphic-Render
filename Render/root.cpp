@@ -6,11 +6,14 @@ HDC Application::bufHdc;
 HBITMAP Application::bufBMP;
 Scene *Application::mainScene;
 
-//------------------------------------------------------------------------------------
+
+
+//TO DO
 /*void CALLBACK Application::timerProc(HWND hWnd, UINT message, UINT_PTR idEvent, DWORD time) {
 	reDraw(hWnd);
 }*/
-//------------------------------------------------------------------------------------
+
+
 void Application::InitWindow(HWND hWnd) {
 	mainScene = new Scene();
 
@@ -21,15 +24,15 @@ void Application::InitWindow(HWND hWnd) {
 	SetDlgItemText(hWnd, IDC_OBJPATH, "obj/african_head.obj");
 	SetDlgItemText(hWnd, IDC_TGAPATH, "obj/african_head_diffuse.tga");
 }
-//------------------------------------------------------------------------------------
-void Application::loadScene(const char * objPath, const char * tgaPath)
-{
+
+
+void Application::loadScene(const char * objPath, const char * tgaPath) {
 	assert(mainScene->loadScene(objPath));
 	assert(mainScene->loadTexture(tgaPath));
 }
-//------------------------------------------------------------------------------------
-void Application::reDraw(HWND hWnd) {
 
+
+void Application::reDraw(HWND hWnd) {
 	Vec3 eye, center, up;
 	Vec2 scale;
 
@@ -48,14 +51,15 @@ void Application::reDraw(HWND hWnd) {
 
 	Render::lookAt(eye, center, up);
 
-	Render::setViewPotrMatrix(0, 0, Render::sizeX, Render::sizeY);
+	Render::setViewPort(0, 0, Render::sizeX, Render::sizeY);
 
 	Render::compileScene(mainScene);
 
 
 	RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
 }
-//------------------------------------------------------------------------------------
+
+
 void Application::drawToBuffer(HWND hWnd) {
 
 	HDC hdc = GetDC(hWnd);
@@ -77,12 +81,14 @@ void Application::drawToBuffer(HWND hWnd) {
 	}
 
 }
-//------------------------------------------------------------------------------------
+
+
 void Application::InitProgram(HINSTANCE hInst, HINSTANCE hPrevInstance,
 	LPWSTR lpCmdLine, int nCmdShow) {
 	DialogBox(hInst, MAKEINTRESOURCE(IDD_DIALOG1), NULL, DlgProcceser);
 }
-//------------------------------------------------------------------------------------
+
+
 INT_PTR CALLBACK Application::DlgProcceser(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 	UNREFERENCED_PARAMETER(lParam);
 	switch (message)
@@ -90,6 +96,7 @@ INT_PTR CALLBACK Application::DlgProcceser(HWND hWnd, UINT message, WPARAM wPara
 		//--------------------------------------------------------------------------
 		case WM_INITDIALOG: {
 			InitWindow(hWnd);
+			//TO DO
 			//SetTimer(hWnd, Timer_ID1, 10000, timerProc);
 			return (INT_PTR)TRUE;
 		}
@@ -169,4 +176,3 @@ INT_PTR CALLBACK Application::DlgProcceser(HWND hWnd, UINT message, WPARAM wPara
 
 	return (INT_PTR)FALSE;
 }
-

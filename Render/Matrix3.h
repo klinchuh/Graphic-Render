@@ -8,6 +8,7 @@ private:
 public:
 
 	Matrix3() {}
+
 	~Matrix3() {}
 
 	Matrix3(const Matrix3 &ma);
@@ -28,14 +29,12 @@ public:
 		m[2][2] = f9;
 	}
 	
-	Matrix3& operator = (const Matrix3 &ma);
 
+	Matrix3& operator = (const Matrix3 &ma);
 
 	float* operator [] (int idx) { return m[idx];  }
 
 	const float* operator [] (int idx) const { return m[idx]; }
-
-
 
 	friend Matrix3 operator + (const Matrix3 &a, const Matrix3 &b);
 

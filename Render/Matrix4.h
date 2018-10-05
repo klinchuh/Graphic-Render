@@ -13,6 +13,8 @@ public:
 
 	Matrix4(const Matrix4 &ma);
 
+	Matrix4& operator = (const Matrix4 &ma);
+
 	explicit Matrix4(const float arr[4][4]) { memcpy(m, arr, 16 * sizeof(float)); }
 
 
@@ -25,19 +27,17 @@ public:
 		m[0][3] = f4, m[1][3] = f8, m[2][3] = f12, m[3][3] = f16;
 	}
 
-	Matrix4& operator = (const Matrix4 &ma);
-
 
 	float* operator [] (int idx) { 
 		assert(idx < 4);
 		return m[idx];
 	}
 
+
 	const float* operator [] (int idx) const { 
 		assert(idx < 4); 
 		return m[idx]; 
 	}
-
 
 
 	friend Matrix4 operator + (const Matrix4 &a, const Matrix4 &b);
