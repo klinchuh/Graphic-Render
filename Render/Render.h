@@ -20,7 +20,6 @@ class Render
 {
 public:
 	static const int sizeX = 700, sizeY = 700;
-	static const float ZBUFFERDEEP;
 
 	static int colorBuffer[sizeX * sizeY];
 
@@ -31,6 +30,8 @@ private:
 	static int zBuffer[sizeX * sizeY];
 
 	static Matrix4 perspectivViewMatrix, camViewMatrix, viewPort;
+
+	static const float ZBUFFERDEEP;
 
 
 	Render();
@@ -72,7 +73,7 @@ private:
 public:
 	/*Preset Matrix for camera rotate
 	val - value of perpectiv veiw*/
-	static void setCameraView(float val);
+	static void setProjection(float val);
 
 	/*eye - the camera point
 	center - the point at which the camera is looking
@@ -82,7 +83,7 @@ public:
 	/*
 	Scale Camera from [-1;1]x[-1;1]x[0;1] to [x;x+w]x[y;y+h]x[0;1]
 	*/
-	static void setViewPotrMatrix(int x, int y, int w, int h);
+	static void setViewPort(int x, int y, int w, int h);
 
 	/*Save scene in tga format file*/
 	static bool compileScene(Scene * sc);

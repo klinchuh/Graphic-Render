@@ -48,7 +48,7 @@ void Application::reDraw(HWND hWnd) {
 
 	Render::lookAt(eye, center, up);
 
-	Render::setViewPotrMatrix(0, 0, Render::sizeX, Render::sizeY);
+	Render::setViewPort(0, 0, Render::sizeX, Render::sizeY);
 
 	Render::compileScene(mainScene);
 
