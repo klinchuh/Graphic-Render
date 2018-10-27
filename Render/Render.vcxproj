@@ -72,9 +72,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>D:\projects\Render\Render\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\projects\Render\Render\lib;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\projects\Render\Render\lib;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\projects\Render\Render\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -104,7 +108,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
@@ -153,46 +157,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="math.h" />
-    <ClInclude Include="Matrix3.h" />
-    <ClInclude Include="Matrix4.h" />
-    <ClInclude Include="points.h" />
-    <ClInclude Include="Render.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="scene.h" />
-    <ClInclude Include="tgaimage.h" />
-    <ClInclude Include="targetver.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Matrix3.cpp" />
-    <ClCompile Include="Matrix4.cpp" />
-    <ClCompile Include="points.cpp" />
-    <ClCompile Include="Render.cpp" />
-    <ClInclude Include="root.h" />
-    <ClCompile Include="scene.cpp" />
-    <ClCompile Include="math.cpp" />
-    <ClCompile Include="root.cpp" />
-    <ClCompile Include="tgaimage.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Render.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="obj\african_head_diffuse.tga" />
-  </ItemGroup>
-  <ItemGroup>
-    <Media Include="obj\african_head.obj">
-      <FileType>Document</FileType>
-    </Media>
-  </ItemGroup>
-  <ItemGroup>
-    <Media Include="obj\cat.obj">
-      <FileType>Document</FileType>
-    </Media>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="ribbon1.mfcribbon-ms" />
+    <None Include="shd\test.frag" />
+    <None Include="shd\test.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\math.cpp" />
+    <ClCompile Include="src\scene.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\math.h" />
+    <ClInclude Include="src\scene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="gr\smile.jpg" />
+    <Image Include="gr\wall.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
