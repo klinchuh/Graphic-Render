@@ -1,9 +1,9 @@
 #include "glutController.h"
 #include "math.h"
 
-Scene GlutController::*scene;
+Scene *GlutController::scene;
 
-Shader GlutController::*shader;
+ShaderInterface *GlutController::shader;
 
 bool GlutController::mouse_1_down = false, mouse_2_down = false;
 

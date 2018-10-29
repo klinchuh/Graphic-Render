@@ -78,6 +78,7 @@
     <ReferencePath>D:\projects\Render\Render\lib;$(ReferencePath)</ReferencePath>
     <LibraryWPath>D:\projects\Render\Render\lib;$(LibraryWPath)</LibraryWPath>
     <ExcludePath>D:\projects\Render\Render\lib;$(ExcludePath)</ExcludePath>
+    <SourcePath>D:\projects\Render\Render\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -87,6 +88,7 @@
     <ReferencePath>D:\projects\Render\Render\lib;$(ReferencePath)</ReferencePath>
     <LibraryWPath>D:\projects\Render\Render\lib;$(LibraryWPath)</LibraryWPath>
     <ExcludePath>D:\projects\Render\Render\lib;$(ExcludePath)</ExcludePath>
+    <SourcePath>D:\projects\Render\Render\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -105,8 +107,9 @@
       <AdditionalOptions>/DNDEBUG %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
+      <AdditionalDependencies>freeglut.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Bscmake>
       <PreserveSbr>false</PreserveSbr>
@@ -128,6 +131,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>freeglut.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

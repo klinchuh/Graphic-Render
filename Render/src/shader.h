@@ -3,14 +3,16 @@
 
 #include "basicLibs.h"
 
-class Shader {
+#include "shaderInterface.h"
+
+class Shader : public ShaderInterface {
 private:
 	//our shader identificator
 	GLuint ID;
 
 public:
 
-	//Shader(): ID(0) { }
+	Shader(): ID(0) { }
 
 	//Compile and link vertex and fragment shaders
 	//vertexPath - path to vertex shader
@@ -20,8 +22,8 @@ public:
 	//link GL_TEXTURE(NUM)(texture unit) and uniform sampler2D in fragment shader
 	//name - имя переменной в шейдоре
 	//num - номер тектурного юнита
-	void attachTexture(int num, const std::string &name) {
-		glUniform1i(glGetUniformLocation(ID, name.c_str()), num);
+	void attachTexture(int num, const char *name) const {
+		glUniform1i(glGetUniformLocation(ID, name), num);
 	}
 
 	//load View matrix in shader

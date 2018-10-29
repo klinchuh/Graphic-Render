@@ -11,7 +11,7 @@ class GlutController : public ControllerInterface {
 private:
 	static Scene *scene;
 
-	static Shader *shader;
+	static ShaderInterface *shader;
 
 	//Mouse and keybord:
 	static bool mouse_1_down, mouse_2_down;
