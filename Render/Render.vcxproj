@@ -74,11 +74,19 @@
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>D:\projects\Render\Render\lib;$(LibraryPath)</LibraryPath>
     <IncludePath>D:\projects\Render\Render\lib;$(IncludePath)</IncludePath>
+    <ExecutablePath>D:\projects\Render\Render\lib;$(ExecutablePath)</ExecutablePath>
+    <ReferencePath>D:\projects\Render\Render\lib;$(ReferencePath)</ReferencePath>
+    <LibraryWPath>D:\projects\Render\Render\lib;$(LibraryWPath)</LibraryWPath>
+    <ExcludePath>D:\projects\Render\Render\lib;$(ExcludePath)</ExcludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>D:\projects\Render\Render\lib;$(IncludePath)</IncludePath>
     <LibraryPath>D:\projects\Render\Render\lib;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>D:\projects\Render\Render\lib;$(ExecutablePath)</ExecutablePath>
+    <ReferencePath>D:\projects\Render\Render\lib;$(ReferencePath)</ReferencePath>
+    <LibraryWPath>D:\projects\Render\Render\lib;$(LibraryWPath)</LibraryWPath>
+    <ExcludePath>D:\projects\Render\Render\lib;$(ExcludePath)</ExcludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -161,23 +169,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="ribbon1.mfcribbon-ms" />
     <None Include="shd\test.frag" />
     <None Include="shd\test.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\controllerInterface.cpp" />
     <ClCompile Include="src\debug.cpp" />
+    <ClCompile Include="src\glutController.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\math.cpp" />
     <ClCompile Include="src\scene.cpp" />
+    <ClCompile Include="src\shader.cpp" />
     <ClCompile Include="src\shaderInterface.cpp" />
+    <ClCompile Include="src\texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\basicLibs.h" />
+    <ClInclude Include="src\controllerInterface.h" />
     <ClInclude Include="src\debug.h" />
+    <ClInclude Include="src\glutController.h" />
     <ClInclude Include="src\math.h" />
+    <ClInclude Include="src\root.h" />
     <ClInclude Include="src\scene.h" />
+    <ClInclude Include="src\shader.h" />
     <ClInclude Include="src\shaderInterface.h" />
+    <ClInclude Include="src\Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="gr\smile.jpg" />
