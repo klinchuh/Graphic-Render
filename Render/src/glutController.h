@@ -26,25 +26,39 @@ private:
 	static glm::vec3 cameraFront;
 	static glm::vec3 cameraUp;
 	static float f1, f2;
+	static int WIDTH, HEIGHT;
+	static float scrollSpeed, cameraScale;
 
 public:
 	GlutController() {}
 
+	//Initializing of Mouse and Leybord processor
 	void initMouseAndKeybord();
 
+	//Load meshes and textures(scene)
 	void initScene();
 
+	//Init timers TODO
 	void initTimers();
 
+	//Initializing of shader
 	void initShader();
 
-	void initController(int num, char *ptr[]);
+	//Main init function, call first
+	void initController(int argc, char *argv[]);
 
+	//init camera and translate matrices
+	void initCamera();
+
+	//Main loop processor
 	static void displayController();
 
+	//Mouse motion processor
 	static void motionController(int x, int y);
 
+	//Mouse mouse processor
 	static void mouseController(int button, int state, int x, int y);
+
 };
 
 #endif // !GLUTCONTROLLER_H

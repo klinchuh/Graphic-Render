@@ -15,7 +15,8 @@ class Scene
 {
 public:
 	Texture *textures;
-	GLuint *VAOs, *VBO, *EBOs;
+	GLuint *VAOs, VBO, *EBOs;
+	int *size;
 
 	//can't load more VAOs or Texture than 
 	//texturesCount - reserve of textures
@@ -28,6 +29,12 @@ public:
 	//num - number of object
 	//fileName - path to *.obj file
 	bool loadVAO(int num, const char *fileName);
+
+	//return count of verteces in VAO
+	//num - number of VAO
+	int getVAOSize(int num) {
+		return size[num];
+	}
 
 	//load texture from file to texture(num) unit
 	//num - number of texture unit

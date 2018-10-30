@@ -48,7 +48,6 @@ private:
 	//shader - shader
 	//shader - type of shader(vertex/fragment) or link(for check linking process)
 	static void checkCompileErrors(GLuint shader, const std::string &type);
-
 };
 
 #endif 

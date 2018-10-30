@@ -6,10 +6,10 @@
 #include "glutController.h"
 #include "controllerInterface.h"
 
-void root(int num, char *ptr[]) {
+void root(int argc, char *argv[]) {
 	ControllerInterface *Controller = new GlutController();
 
-	Controller->initController(num, ptr);
+	Controller->initController(argc, argv);
 
 	glutMainLoop();
 }

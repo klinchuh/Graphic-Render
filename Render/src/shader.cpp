@@ -24,7 +24,8 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath) {
 	}
 	catch (std::ifstream::failure e)
 	{
-		ERROR_FLT("Can't find/open/read shader's files")
+		ERROR_FLT("Can't find/open/read shader's files");
+		exit(1);
 	}
 
 	char c;

@@ -1,0 +1,757 @@
+>>> Texture loaded width:1024 height: 1024
+>>> Texture loaded to 0 unit
+>>> Texture loaded width:1024 height: 1024
+>>> Texture loaded to 1 unit
+>>> loaded from disk vertex Shader:
+#version 330 core
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec2 aTexCoord;
+
+out vec2 TexCoord;
+
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 projection;
+
+void main()
+{
+    gl_Position = projection * view * model * vec4(aPos, 1.0);
+    TexCoord = aTexCoord;
+}
+>>> loaded from disk fragment Shader:
+#version 330 core
+out vec4 FragColor;
+  
+in vec2 TexCoord;
+
+uniform sampler2D texture1;
+uniform sampler2D texture2;
+
+void main() {
+    FragColor = mix(texture(texture1, TexCoord), texture(texture2, TexCoord), 0.2);
+}
+>>> vertex shader have compled
+>>> fragment shader have compled
+>>> Shaders have linked
+0 0 365 256
+move to 365 256
+256 256
+move to 365 256
+256 256
+move to 365 256
+256 256
+move to 367 256
+256 256
+move to 372 257
+256 256
+move to 376 257
+257 257
+move to 381 258
+257 257
+move to 386 259
+258 258
+move to 393 260
+259 259
+move to 399 262
+260 260
+move to 404 262
+262 262
+move to 411 263
+262 262
+move to 415 264
+263 263
+move to 419 265
+264 264
+move to 423 265
+265 265
+move to 423 265
+265 265
+move to 425 266
+265 265
+move to 427 266
+266 266
+move to 429 266
+266 266
+move to 429 266
+266 266
+move to 431 266
+266 266
+move to 431 267
+266 266
+move to 432 267
+267 267
+move to 432 267
+267 267
+move to 433 267
+267 267
+move to 434 267
+267 267
+move to 436 267
+267 267
+move to 436 267
+267 267
+move to 437 267
+267 267
+move to 438 267
+267 267
+move to 439 267
+267 267
+move to 439 267
+267 267
+move to 440 267
+267 267
+move to 441 267
+267 267
+move to 441 267
+267 267
+move to 443 267
+267 267
+move to 443 267
+267 267
+move to 445 267
+267 267
+move to 446 267
+267 267
+move to 447 267
+267 267
+move to 448 267
+267 267
+move to 449 267
+267 267
+move to 451 267
+267 267
+move to 452 267
+267 267
+move to 453 267
+267 267
+move to 454 267
+267 267
+move to 455 267
+267 267
+move to 457 267
+267 267
+move to 458 267
+267 267
+move to 459 267
+267 267
+move to 460 267
+267 267
+move to 462 267
+267 267
+move to 463 267
+267 267
+move to 465 267
+267 267
+move to 467 267
+267 267
+move to 468 267
+267 267
+move to 470 267
+267 267
+move to 474 267
+267 267
+move to 476 267
+267 267
+move to 479 267
+267 267
+move to 481 267
+267 267
+move to 482 267
+267 267
+move to 485 267
+267 267
+move to 487 267
+267 267
+move to 489 267
+267 267
+move to 491 267
+267 267
+move to 492 267
+267 267
+move to 494 267
+267 267
+move to 496 267
+267 267
+move to 497 267
+267 267
+move to 499 267
+267 267
+move to 500 267
+267 267
+move to 501 266
+267 267
+move to 503 266
+266 266
+move to 504 265
+266 266
+move to 505 265
+265 265
+move to 506 265
+265 265
+move to 508 265
+265 265
+move to 510 264
+265 265
+move to 511 264
+264 264
+move to 513 263
+264 264
+move to 515 262
+263 263
+move to 516 262
+262 262
+move to 519 261
+262 262
+move to 521 260
+261 261
+move to 524 259
+260 260
+move to 528 257
+259 259
+move to 530 255
+257 257
+move to 533 254
+255 255
+move to 537 252
+254 254
+move to 541 250
+252 252
+move to 546 246
+250 250
+move to 550 243
+246 246
+move to 554 240
+243 243
+move to 557 237
+240 240
+move to 562 231
+237 237
+move to 566 226
+231 231
+move to 570 222
+226 226
+move to 574 217
+222 222
+move to 578 213
+217 217
+move to 580 210
+213 213
+move to 585 204
+210 210
+move to 590 198
+204 204
+move to 595 192
+198 198
+move to 598 185
+192 192
+move to 603 179
+185 185
+move to 608 171
+179 179
+move to 612 165
+171 171
+move to 616 158
+165 165
+move to 619 152
+158 158
+move to 623 146
+152 152
+move to 625 141
+146 146
+move to 627 135
+141 141
+move to 628 131
+135 135
+move to 629 126
+131 131
+move to 629 122
+126 126
+move to 630 118
+122 122
+move to 630 113
+118 118
+move to 630 108
+113 113
+move to 630 103
+108 108
+move to 629 97
+103 103
+move to 627 93
+97 97
+move to 626 89
+93 93
+move to 625 86
+89 89
+move to 623 84
+86 86
+move to 621 81
+84 84
+move to 619 79
+81 81
+move to 618 77
+79 79
+move to 616 75
+77 77
+move to 613 74
+75 75
+move to 610 71
+74 74
+move to 607 69
+71 71
+move to 602 66
+69 69
+move to 596 63
+66 66
+move to 592 61
+63 63
+move to 585 59
+61 61
+move to 576 55
+59 59
+move to 567 54
+55 55
+move to 557 52
+54 54
+move to 547 50
+52 52
+move to 535 49
+50 50
+move to 525 49
+49 49
+move to 515 47
+49 49
+move to 505 47
+47 47
+move to 495 48
+47 47
+move to 484 49
+48 48
+move to 472 52
+49 49
+move to 462 54
+52 52
+move to 450 57
+54 54
+move to 438 61
+57 57
+move to 426 65
+61 61
+move to 415 69
+65 65
+move to 403 73
+69 69
+move to 391 80
+73 73
+move to 379 85
+80 80
+move to 367 92
+85 85
+move to 354 99
+92 92
+move to 344 105
+99 99
+move to 331 111
+105 105
+move to 322 117
+111 111
+move to 312 123
+117 117
+move to 302 129
+123 123
+move to 293 136
+129 129
+move to 282 143
+136 136
+move to 273 151
+143 143
+move to 264 158
+151 151
+move to 255 166
+158 158
+move to 244 176
+166 166
+move to 234 184
+176 176
+move to 227 192
+184 184
+move to 220 199
+192 192
+move to 214 206
+199 199
+move to 206 213
+206 206
+move to 198 221
+213 213
+move to 190 232
+221 221
+move to 181 243
+232 232
+move to 173 254
+243 243
+move to 165 265
+254 254
+move to 158 272
+265 265
+move to 152 281
+272 272
+move to 148 289
+281 281
+move to 143 296
+289 289
+move to 139 302
+296 296
+move to 137 309
+302 302
+move to 134 320
+309 309
+move to 132 328
+320 320
+move to 129 339
+328 328
+move to 128 349
+339 339
+move to 127 358
+349 349
+move to 127 366
+358 358
+move to 127 375
+366 366
+move to 128 385
+375 375
+move to 130 393
+385 385
+move to 131 402
+393 393
+move to 133 412
+402 402
+move to 133 422
+412 412
+move to 136 431
+422 422
+move to 136 440
+431 431
+move to 137 447
+440 440
+move to 137 450
+447 447
+move to 137 454
+450 450
+move to 139 459
+454 454
+move to 140 463
+459 459
+move to 141 466
+463 463
+move to 142 469
+466 466
+move to 144 473
+469 469
+move to 146 476
+473 473
+move to 148 481
+476 476
+move to 151 487
+481 481
+move to 156 491
+487 487
+move to 160 496
+491 491
+move to 166 501
+496 496
+move to 172 505
+501 501
+move to 180 512
+505 505
+move to 188 519
+512 512
+move to 196 526
+519 519
+move to 203 531
+526 526
+move to 211 536
+531 531
+move to 217 541
+536 536
+move to 221 547
+541 541
+move to 227 551
+547 547
+move to 232 556
+551 551
+move to 235 559
+556 556
+move to 237 562
+559 559
+move to 240 566
+562 562
+move to 242 568
+566 566
+move to 243 569
+568 568
+move to 246 570
+569 569
+move to 248 571
+570 570
+move to 248 572
+571 571
+move to 250 572
+572 572
+move to 251 573
+572 572
+move to 252 573
+573 573
+move to 254 574
+573 573
+move to 255 576
+574 574
+move to 256 578
+576 576
+move to 257 579
+578 578
+move to 259 581
+579 579
+move to 260 583
+581 581
+move to 262 586
+583 583
+move to 264 587
+586 586
+move to 265 588
+587 587
+move to 266 590
+588 588
+move to 268 591
+590 590
+move to 269 592
+591 591
+move to 270 593
+592 592
+move to 272 593
+593 593
+move to 274 595
+593 593
+move to 275 596
+595 595
+move to 277 596
+596 596
+move to 280 597
+596 596
+move to 281 597
+597 597
+move to 283 597
+597 597
+move to 285 597
+597 597
+move to 286 597
+597 597
+move to 289 597
+597 597
+move to 291 596
+597 597
+move to 293 595
+596 596
+move to 295 594
+595 595
+move to 298 593
+594 594
+move to 300 592
+593 593
+move to 302 591
+592 592
+move to 305 589
+591 591
+move to 308 586
+589 589
+move to 310 584
+586 586
+move to 312 581
+584 584
+move to 314 579
+581 581
+move to 314 577
+579 579
+move to 315 575
+577 577
+move to 315 573
+575 575
+move to 316 570
+573 573
+move to 316 567
+570 570
+move to 316 564
+567 567
+move to 317 561
+564 564
+move to 317 557
+561 561
+move to 317 553
+557 557
+move to 316 549
+553 553
+move to 315 544
+549 549
+move to 311 535
+544 544
+move to 308 527
+535 535
+move to 304 520
+527 527
+move to 300 513
+520 520
+move to 297 507
+513 513
+move to 293 503
+507 507
+move to 290 498
+503 503
+move to 288 494
+498 498
+move to 286 491
+494 494
+move to 283 489
+491 491
+move to 281 487
+489 489
+move to 278 485
+487 487
+move to 272 483
+485 485
+move to 267 479
+483 483
+move to 259 475
+479 479
+move to 249 471
+475 475
+move to 238 467
+471 471
+move to 229 465
+467 467
+move to 219 461
+465 465
+move to 210 459
+461 461
+move to 201 456
+459 459
+move to 191 453
+456 456
+move to 183 453
+453 453
+move to 174 452
+453 453
+move to 169 452
+452 452
+move to 159 451
+452 452
+move to 148 448
+451 451
+move to 140 447
+448 448
+move to 133 446
+447 447
+move to 127 445
+446 446
+move to 122 444
+445 445
+move to 118 444
+444 444
+move to 114 443
+444 444
+move to 112 442
+443 443
+move to 108 440
+442 442
+move to 104 436
+440 440
+move to 101 430
+436 436
+move to 99 424
+430 430
+move to 96 418
+424 424
+move to 95 411
+418 418
+move to 94 404
+411 411
+move to 92 397
+404 404
+move to 90 387
+397 397
+move to 89 377
+387 387
+move to 88 367
+377 377
+move to 85 356
+367 367
+move to 83 346
+356 356
+move to 80 337
+346 346
+move to 77 327
+337 337
+move to 75 316
+327 327
+move to 74 309
+316 316
+move to 72 299
+309 309
+move to 72 291
+299 299
+move to 72 282
+291 291
+move to 72 272
+282 282
+move to 73 262
+272 272
+move to 74 252
+262 262
+move to 77 242
+252 252
+move to 80 231
+242 242
+move to 86 220
+231 231
+move to 91 211
+220 220
+move to 99 199
+211 211
+move to 109 188
+199 199
+move to 118 179
+188 188
+move to 131 169
+179 179
+move to 149 160
+169 169
+move to 174 149
+160 160
+move to 206 137
+149 149
+move to 247 124
+137 137
+move to 284 114
+124 124
+move to 317 106
+114 114
+move to 347 100
+106 106
+move to 373 97
+100 100
+move to 392 94
+97 97
+move to 405 91
+94 94
+move to 417 91
+91 91
+move to 426 90
+91 91
+move to 431 90
+90 90
+move to 436 90
+90 90
+move to 441 90
+90 90
+move to 447 92
+90 90
+move to 459 96
+92 92
+0 1 459 96

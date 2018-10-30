@@ -92,6 +92,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <ExecutablePath>D:\projects\Render\Render\lib;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>D:\projects\Render\Render\lib;$(IncludePath)</IncludePath>
+    <ReferencePath>D:\projects\Render\Render\lib;$(ReferencePath)</ReferencePath>
+    <LibraryPath>D:\projects\Render\Render\lib;$(LibraryPath)</LibraryPath>
+    <LibraryWPath>D:\projects\Render\Render\lib;$(LibraryWPath)</LibraryWPath>
+    <ExcludePath>D:\projects\Render\Render\lib;$(ExcludePath)</ExcludePath>
+    <SourcePath>D:\projects\Render\Render\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -136,7 +143,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -151,6 +158,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>freeglut.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -177,6 +185,7 @@
     <None Include="shd\test.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\camera.cpp" />
     <ClCompile Include="src\controllerInterface.cpp" />
     <ClCompile Include="src\debug.cpp" />
     <ClCompile Include="src\glutController.cpp" />
@@ -189,6 +198,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\basicLibs.h" />
+    <ClInclude Include="src\camera.h" />
     <ClInclude Include="src\controllerInterface.h" />
     <ClInclude Include="src\debug.h" />
     <ClInclude Include="src\glutController.h" />
