@@ -88,6 +88,7 @@ void GlutController::initCamera() {
 void GlutController::initMouseAndKeybord() {
 	glutMouseFunc(mouseController);
 	glutMotionFunc(motionController);
+	glutKeyboardFunc(keyboardController);
 }
 
 
@@ -113,23 +114,39 @@ void GlutController::initShader() {
 
 
 void GlutController::mouseController(int button, int state, int x, int y) {
-	DEBUG_S(button << ' ' << state << ' ' << x << ' ' << y);
-	if (button == GLUT_LEFT_BUTTON) {
-		if (state == GLUT_DOWN) {
-			curMouseX = x;
-			curMouseY = y;
-			mouse_1_down = 1;
+	DEBUG_S(">>>mouse proc : " << button << ' ' << state << ' ' << x << ' ' << y);
+	switch (button) {
+		case GLUT_LEFT_BUTTON: {
+			if (state == GLUT_DOWN) {
+				curMouseX = x;
+				curMouseY = y;
+				mouse_1_down = 1;
+			}
+			else {
+				mouse_1_down = 0;
+			}
+			break;
 		}
-		else {
-			mouse_1_down = 0;
+		case 3: {
+			cameraScale += 0.15f;
+			break;
 		}
+		case 4: {
+			cameraScale -= 0.15f;
+			if (cameraScale < 0.5f) {
+				cameraScale = 0.5f;
+			}
+			break;
+		}
+
 	}
+
+	displayController();
 }
 
 
 void GlutController::motionController(int x, int y) {
-	DEBUG_S("move to " << x << ' ' << y);
-	DEBUG_S(curMouseY << ' ' << curMouseY);
+	DEBUG_S(">>>move to " << x << ' ' << y);
 	
 	shader->use();
 
@@ -148,14 +165,7 @@ void GlutController::motionController(int x, int y) {
 		if (f2 < -89.0) {
 			f2 = -89.0;
 		}
-
-		cameraPos = Camera::transAnglesToVector(f1, f2);
 	}
-	cameraPos *= cameraScale;
-
-	view = glm::lookAt(cameraPos + cameraFront, cameraFront, cameraUp);
-
-	shader->attachViewMatrix(view);
 
 	displayController();
 }
@@ -173,6 +183,12 @@ void GlutController::displayController() {
 	glBindVertexArray(scene->VAOs[0]);
 
 	//Draw current Vertex Array(VAO)
+
+	cameraPos = Camera::transAnglesToVector(f1, f2);
+	cameraPos *= cameraScale;
+	view = glm::lookAt(cameraPos + cameraFront, cameraFront, cameraUp);
+	shader->attachViewMatrix(view);
+
 	model = glm::translate(glm::mat4(), glm::vec3(0.0f, 0.0f, -1.0f));
 	shader->attachModelMatrix(model);
 	glDrawArrays(GL_TRIANGLES, 0, scene->getVAOSize(0));
@@ -185,4 +201,11 @@ void GlutController::displayController() {
 	glFlush();
 	//We have double buffer
 	glutSwapBuffers();
+}
+
+void GlutController::keyboardController(unsigned char key, int x, int y) {
+	DEBUG_S(key << ' ' << x << ' ' << y);
+	//switch(key) {
+//
+	//}
 }

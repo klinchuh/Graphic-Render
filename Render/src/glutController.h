@@ -59,6 +59,8 @@ public:
 	//Mouse mouse processor
 	static void mouseController(int button, int state, int x, int y);
 
+	static void keyboardController(unsigned char key, int x, int y);
+
 };
 
 #endif // !GLUTCONTROLLER_H
