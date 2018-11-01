@@ -72,12 +72,33 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>D:\projects\Render\Render\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\projects\Render\Render\lib;$(IncludePath)</IncludePath>
+    <ExecutablePath>D:\projects\Render\Render\lib;$(ExecutablePath)</ExecutablePath>
+    <ReferencePath>D:\projects\Render\Render\lib;$(ReferencePath)</ReferencePath>
+    <LibraryWPath>D:\projects\Render\Render\lib;$(LibraryWPath)</LibraryWPath>
+    <ExcludePath>D:\projects\Render\Render\lib;$(ExcludePath)</ExcludePath>
+    <SourcePath>D:\projects\Render\Render\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\projects\Render\Render\lib;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\projects\Render\Render\lib;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>D:\projects\Render\Render\lib;$(ExecutablePath)</ExecutablePath>
+    <ReferencePath>D:\projects\Render\Render\lib;$(ReferencePath)</ReferencePath>
+    <LibraryWPath>D:\projects\Render\Render\lib;$(LibraryWPath)</LibraryWPath>
+    <ExcludePath>D:\projects\Render\Render\lib;$(ExcludePath)</ExcludePath>
+    <SourcePath>D:\projects\Render\Render\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <ExecutablePath>D:\projects\Render\Render\lib;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>D:\projects\Render\Render\lib;$(IncludePath)</IncludePath>
+    <ReferencePath>D:\projects\Render\Render\lib;$(ReferencePath)</ReferencePath>
+    <LibraryPath>D:\projects\Render\Render\lib;$(LibraryPath)</LibraryPath>
+    <LibraryWPath>D:\projects\Render\Render\lib;$(LibraryWPath)</LibraryWPath>
+    <ExcludePath>D:\projects\Render\Render\lib;$(ExcludePath)</ExcludePath>
+    <SourcePath>D:\projects\Render\Render\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -90,10 +111,12 @@
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <BrowseInformation>false</BrowseInformation>
+      <AdditionalOptions>/DNDEBUG %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
+      <AdditionalDependencies>freeglut.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Bscmake>
       <PreserveSbr>false</PreserveSbr>
@@ -104,21 +127,23 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalOptions>/DNDEBUG %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>freeglut.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -126,12 +151,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalOptions>/DNDEBUG %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>freeglut.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,6 +171,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalOptions>/DNDEBUG %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,46 +181,43 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="math.h" />
-    <ClInclude Include="Matrix3.h" />
-    <ClInclude Include="Matrix4.h" />
-    <ClInclude Include="points.h" />
-    <ClInclude Include="Render.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="scene.h" />
-    <ClInclude Include="tgaimage.h" />
-    <ClInclude Include="targetver.h" />
+    <None Include="shd\test.frag" />
+    <None Include="shd\test.vert" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Matrix3.cpp" />
-    <ClCompile Include="Matrix4.cpp" />
-    <ClCompile Include="points.cpp" />
-    <ClCompile Include="Render.cpp" />
-    <ClInclude Include="root.h" />
-    <ClCompile Include="scene.cpp" />
-    <ClCompile Include="math.cpp" />
-    <ClCompile Include="root.cpp" />
-    <ClCompile Include="tgaimage.cpp" />
+    <ClCompile Include="src\camera.cpp" />
+    <ClCompile Include="src\controllerInterface.cpp" />
+    <ClCompile Include="src\debug.cpp" />
+    <ClCompile Include="src\glutController.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\math.cpp" />
+    <ClCompile Include="src\scene.cpp" />
+    <ClCompile Include="src\shader.cpp" />
+    <ClCompile Include="src\shaderInterface.cpp" />
+    <ClCompile Include="src\texture.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Render.rc" />
+    <ClInclude Include="src\basicLibs.h" />
+    <ClInclude Include="src\camera.h" />
+    <ClInclude Include="src\controllerInterface.h" />
+    <ClInclude Include="src\debug.h" />
+    <ClInclude Include="src\glutController.h" />
+    <ClInclude Include="src\math.h" />
+    <ClInclude Include="src\root.h" />
+    <ClInclude Include="src\scene.h" />
+    <ClInclude Include="src\shader.h" />
+    <ClInclude Include="src\shaderInterface.h" />
+    <ClInclude Include="src\Texture.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="obj\african_head_diffuse.tga" />
+    <Image Include="gr\african_head_diffuse.jpg" />
+    <Image Include="gr\smile.jpg" />
+    <Image Include="gr\wall.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="obj\african_head.obj">
+    <Media Include="gr\african_head.obj">
       <FileType>Document</FileType>
     </Media>
-  </ItemGroup>
-  <ItemGroup>
-    <Media Include="obj\cat.obj">
-      <FileType>Document</FileType>
-    </Media>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ribbon1.mfcribbon-ms" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
