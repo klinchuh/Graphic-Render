@@ -210,8 +210,14 @@
     <ClInclude Include="src\Texture.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="gr\african_head_diffuse.jpg" />
     <Image Include="gr\smile.jpg" />
     <Image Include="gr\wall.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="gr\african_head.obj">
+      <FileType>Document</FileType>
+    </Media>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

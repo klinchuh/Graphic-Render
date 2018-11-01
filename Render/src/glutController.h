@@ -18,7 +18,7 @@ private:
 	static int curMouseX, curMouseY;
 
 	//Camera matrix:
-	static glm::mat4 model, view, proj;
+	static glm::mat4 *model, *view, *proj;
 
 
 	//Camera Config:
@@ -59,7 +59,10 @@ public:
 	//Mouse mouse processor
 	static void mouseController(int button, int state, int x, int y);
 
+	//keyboardController
 	static void keyboardController(unsigned char key, int x, int y);
+
+	static void timerController(int val);
 
 };
 

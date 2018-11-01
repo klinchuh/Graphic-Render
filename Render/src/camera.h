@@ -6,7 +6,16 @@
 //TO DO:
 
 class Camera {
+private:
+	glm::vec3 cameraPos;
+	glm::vec3 cameraFront;
+	glm::vec3 cameraUp;
+	float yaw, pitch;
+	float scrollSpeed, cameraScale;
 public:
+
+
+
 	static glm::vec3 transAnglesToVector(float f1, float f2) {
 		glm::vec3 answer;
 		answer.x = cos(glm::radians(f1)) * cos(glm::radians(f2));

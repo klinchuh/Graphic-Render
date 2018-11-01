@@ -10,7 +10,8 @@ bool GlutController::mouse_1_down = false, mouse_2_down = false;
 
 int GlutController::curMouseX, GlutController::curMouseY;
 
-glm::mat4 GlutController::model, GlutController::view, GlutController::proj;
+glm::mat4 *GlutController::model = new glm::mat4, *GlutController::view = new glm::mat4,
+	*GlutController::proj = new glm::mat4;
 
 
 glm::vec3 GlutController::cameraPos = glm::vec3(0.0f, 0.0f, 2.0f);
@@ -63,6 +64,8 @@ void GlutController::initController(int argc, char *argv[]) {
 	initCamera();
 
 	//init main program loop
+	//void(GlutController::*tmp)() = &GlutController::displayController;
+	//(this->*tmp)();
 	glutDisplayFunc(displayController);
 
 	//On my intel intergated graphic chip don't work without it(don't render first cadr)
@@ -71,17 +74,17 @@ void GlutController::initController(int argc, char *argv[]) {
 
 
 void GlutController::initCamera() {
-	proj = glm::perspective(glm::radians(45.0f), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
+	*proj = glm::perspective(glm::radians(45.0f), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
 
-	
+
 	cameraPos = Camera::transAnglesToVector(f1, f2);
 	cameraPos *= cameraScale;
 
-	view = glm::lookAt(cameraPos + cameraFront, cameraFront, cameraUp);
+	*view = glm::lookAt(cameraPos + cameraFront, cameraFront, cameraUp);
 
-	shader->attachViewMatrix(view);
-	shader->attachProjectionMatrix(proj);
-	shader->attachModelMatrix(model);
+	shader->attachViewMatrix(*view);
+	shader->attachProjectionMatrix(*proj);
+	shader->attachModelMatrix(*model);
 }
 
 
@@ -101,8 +104,13 @@ void GlutController::initScene() {
 	scene->loadVAO(0, "gr\\african_head.obj");
 }
 
+void GlutController::timerController(int val) {
+	displayController();
+	glutTimerFunc(16, timerController, 0);
+}
 
 void GlutController::initTimers() {
+	glutTimerFunc(16, timerController, 0);
 	//TO DO
 }
 
@@ -116,38 +124,38 @@ void GlutController::initShader() {
 void GlutController::mouseController(int button, int state, int x, int y) {
 	DEBUG_S(">>>mouse proc : " << button << ' ' << state << ' ' << x << ' ' << y);
 	switch (button) {
-		case GLUT_LEFT_BUTTON: {
-			if (state == GLUT_DOWN) {
-				curMouseX = x;
-				curMouseY = y;
-				mouse_1_down = 1;
-			}
-			else {
-				mouse_1_down = 0;
-			}
-			break;
+	case GLUT_LEFT_BUTTON: {
+		if (state == GLUT_DOWN) {
+			curMouseX = x;
+			curMouseY = y;
+			mouse_1_down = 1;
 		}
-		case 3: {
-			cameraScale += 0.15f;
-			break;
+		else {
+			mouse_1_down = 0;
 		}
-		case 4: {
-			cameraScale -= 0.15f;
-			if (cameraScale < 0.5f) {
-				cameraScale = 0.5f;
-			}
-			break;
+		break;
+	}
+	case 3: {
+		cameraScale += 0.15f;
+		break;
+	}
+	case 4: {
+		cameraScale -= 0.15f;
+		if (cameraScale < 0.5f) {
+			cameraScale = 0.5f;
 		}
+		break;
+	}
 
 	}
 
-	displayController();
+	//displayController();
 }
 
 
 void GlutController::motionController(int x, int y) {
 	DEBUG_S(">>>move to " << x << ' ' << y);
-	
+
 	shader->use();
 
 	if (mouse_1_down == 1) {
@@ -167,7 +175,7 @@ void GlutController::motionController(int x, int y) {
 		}
 	}
 
-	displayController();
+	//displayController();
 }
 
 
@@ -186,18 +194,18 @@ void GlutController::displayController() {
 
 	cameraPos = Camera::transAnglesToVector(f1, f2);
 	cameraPos *= cameraScale;
-	view = glm::lookAt(cameraPos + cameraFront, cameraFront, cameraUp);
-	shader->attachViewMatrix(view);
+	*view = glm::lookAt(cameraPos + cameraFront, cameraFront, cameraUp);
+	shader->attachViewMatrix(*view);
 
-	model = glm::translate(glm::mat4(), glm::vec3(0.0f, 0.0f, -1.0f));
-	shader->attachModelMatrix(model);
+	*model = glm::translate(glm::mat4(), glm::vec3(0.0f, 0.0f, -1.0f));
+	shader->attachModelMatrix(*model);
 	glDrawArrays(GL_TRIANGLES, 0, scene->getVAOSize(0));
 
 	//glDrawArrays(GL_TRIANGLES, 0, 6); 
 
 	//Bend Standart Vertex Array
 	glBindVertexArray(0);
-	
+
 	glFlush();
 	//We have double buffer
 	glutSwapBuffers();

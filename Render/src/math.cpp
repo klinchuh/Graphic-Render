@@ -45,7 +45,7 @@ float Math::scalarPrt2(const glm::vec2 &a, const glm::vec2 &b) {
 
 
 glm::vec3 Math::crossPrt(const glm::vec3 &v1, const glm::vec3 &v2) {
-	return glm::vec3{ v1[1] * v2[2] - v1[2] * v2[1], - v1[0] * v2[2] + v1[2] * v2[0], v1[0] * v2[1] - v1[1] * v2[0] };
+	return glm::vec3{ v1[1] * v2[2] - v1[2] * v2[1], -v1[0] * v2[2] + v1[2] * v2[0], v1[0] * v2[1] - v1[1] * v2[0] };
 }
 
 
