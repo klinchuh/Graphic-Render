@@ -13,6 +13,8 @@ private:
 	static HDC bufHdc;
 	static HBITMAP bufBMP;
 
+	static Render *render;
+
 	/*data for scene*/
 	static Scene *mainScene;
 

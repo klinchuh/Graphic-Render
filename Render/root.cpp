@@ -5,7 +5,7 @@
 HDC Application::bufHdc;
 HBITMAP Application::bufBMP;
 Scene *Application::mainScene;
-
+Render *Application::render;
 
 
 //TO DO
@@ -16,6 +16,7 @@ Scene *Application::mainScene;
 
 void Application::InitWindow(HWND hWnd) {
 	mainScene = new Scene();
+	render = new Render();
 
 	SetDlgItemText(hWnd, IDC_EDIT1, "7 0 7");
 	SetDlgItemText(hWnd, IDC_EDIT2, "1.5 0 1.5");
@@ -49,15 +50,6 @@ void Application::chooseWindowsFile(char * path) {
 	ofn.lpstrInitialDir = NULL;
 	ofn.Flags = OFN_EXPLORER;
 	GetOpenFileName(&ofn);
-
-
-	//if (lpBuffer[0] == '\0') return TRUE;
-	//SendDlgItemMessage(hWnd, IDC_LIST1, LB_ADDSTRING, 0, (LPARAM)lpBuffer
-	//);
-	//wchar_t * pch = F(lpBuffer, nx);
-	//SendDlgItemMessage(hWnd, IDC_LIST1, LB_ADDSTRING, 0, (LPARAM)lpBuffer);
-	//pch = nx;
-	//wchar_t * pch = wcstok(lpBuffer, L"\\:.");
 }
 
 
@@ -78,11 +70,11 @@ void Application::reDraw(HWND hWnd) {
 		>> center[0] >> center[1] >> center[2]
 		>> up[0] >> up[1] >> up[2];
 
-	Render::lookAt(eye, center, up);
+	render->lookAt(eye, center, up);
 
-	Render::setViewPort(0, 0, Render::sizeX, Render::sizeY);
+	render->setViewPort(0, 0, render->sizeX, render->sizeY);
 
-	Render::compileScene(mainScene);
+	render->compileScene(mainScene);
 
 
 	RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
@@ -95,17 +87,17 @@ void Application::drawToBuffer(HWND hWnd) {
 
 	bufHdc = CreateCompatibleDC(hdc);
 
-	bufBMP = CreateCompatibleBitmap(hdc, Render::sizeX, Render::sizeY);
+	bufBMP = CreateCompatibleBitmap(hdc, render->sizeX, render->sizeY);
 
 	SelectObject(bufHdc, bufBMP);
 
-	int sizeX = Render::sizeX;
-	int sizeY = Render::sizeY;
+	int sizeX = render->sizeX;
+	int sizeY = render->sizeY;
 
 
 	for (int i = 0; i < sizeX; i++) {
 		for (int j = 0; j < sizeY; j++) {
-			SetPixel(bufHdc, i, sizeY - j, Render::colorBuffer[i * sizeY + j]);
+			SetPixel(bufHdc, i, sizeY - j, render->getColorBuffer()[i * sizeY + j]);
 		}
 	}
 
@@ -151,7 +143,7 @@ INT_PTR CALLBACK Application::DlgProcceser(HWND hWnd, UINT message, WPARAM wPara
 			//--------------------------------------------------------------------------
 			case IDC_CHECK1: {
 
-				Render::RENDER_WITHOUT_TEXTURES ^= 1;
+				render->RENDER_WITHOUT_TEXTURES ^= 1;
 
 				break;
 			}
@@ -220,7 +212,7 @@ INT_PTR CALLBACK Application::DlgProcceser(HWND hWnd, UINT message, WPARAM wPara
 			HDC hdc = BeginPaint(hWnd, &ps);
 
 			//BiBlt(hdc, x, y, ...) x, y - up left angle of Picture
-			BitBlt(hdc, 50, 50, Render::sizeX, Render::sizeY, bufHdc, 0, 0, SRCCOPY);
+			BitBlt(hdc, 50, 50, render->sizeX, render->sizeY, bufHdc, 0, 0, SRCCOPY);
 
 			EndPaint(hWnd, &ps);
 			break;
