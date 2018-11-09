@@ -5,8 +5,6 @@
 
 Scene::Scene() { }
 
-Scene::~Scene() { }
-
 
 bool Scene::loadScene(const std::string &fileName) {
 	clearSc();

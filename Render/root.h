@@ -34,6 +34,10 @@ private:
 	/*load scene and texture into memory*/
 	static void loadScene(const char* objPath, const char* tgaPath);
 
+	/*Invoke windows choose of files dialog and return path to file or empty file*/
+	static void chooseWindowsFile(char * path);
+
+
 public:
 	/*function for init all program*/
 	static void InitProgram(HINSTANCE hInst, HINSTANCE hPrevInstance,

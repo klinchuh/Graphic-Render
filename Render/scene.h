@@ -18,7 +18,9 @@ struct Scene
 
 	Scene();
 
-	~Scene();
+	~Scene() {
+		clearSc();
+	}
 
 	bool loadScene(const std::string &fileName);
 

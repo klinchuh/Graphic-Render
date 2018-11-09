@@ -21,14 +21,43 @@ void Application::InitWindow(HWND hWnd) {
 	SetDlgItemText(hWnd, IDC_EDIT2, "1.5 0 1.5");
 	SetDlgItemText(hWnd, IDC_EDIT3, "0 1 0");
 
-	SetDlgItemText(hWnd, IDC_OBJPATH, "obj/african_head.obj");
-	SetDlgItemText(hWnd, IDC_TGAPATH, "obj/african_head_diffuse.tga");
+	SetDlgItemText(hWnd, IDC_OBJPATH, "choose path, ex: *\\african_head.obj");
+	SetDlgItemText(hWnd, IDC_TGAPATH, "choose path, ex: *\\african_head_diffuse.tga");
 }
 
 
 void Application::loadScene(const char * objPath, const char * tgaPath) {
-	assert(mainScene->loadScene(objPath));
 	assert(mainScene->loadTexture(tgaPath));
+	assert(mainScene->loadScene(objPath));
+}
+
+void Application::chooseWindowsFile(char * path) {
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	OPENFILENAME ofn = { 0 };
+	char szFileName[260];
+	ofn.lStructSize = sizeof(ofn);
+	ofn.hwndOwner = NULL;
+	ofn.lpstrFile = (LPSTR)path;
+	*(ofn.lpstrFile) = 0;
+	ofn.nMaxFile = 255;
+	ofn.lpstrFilter = NULL;
+	ofn.nFilterIndex = 1;
+	ofn.lpstrFileTitle = (LPSTR)szFileName;
+	*(ofn.lpstrFileTitle) = 0;
+	ofn.nMaxFileTitle = sizeof(szFileName);
+	ofn.lpstrInitialDir = NULL;
+	ofn.Flags = OFN_EXPLORER;
+	GetOpenFileName(&ofn);
+
+
+	//if (lpBuffer[0] == '\0') return TRUE;
+	//SendDlgItemMessage(hWnd, IDC_LIST1, LB_ADDSTRING, 0, (LPARAM)lpBuffer
+	//);
+	//wchar_t * pch = F(lpBuffer, nx);
+	//SendDlgItemMessage(hWnd, IDC_LIST1, LB_ADDSTRING, 0, (LPARAM)lpBuffer);
+	//pch = nx;
+	//wchar_t * pch = wcstok(lpBuffer, L"\\:.");
 }
 
 
@@ -141,6 +170,34 @@ INT_PTR CALLBACK Application::DlgProcceser(HWND hWnd, UINT message, WPARAM wPara
 				SetDlgItemText(hWnd, IDC_STATUS1, "Статус: сцена загружена");
 				SetDlgItemText(hWnd, IDC_STATUS2, "Статус: Ожидание");
 				EnableWindow(GetDlgItem(hWnd, IDC_reDraw), 1);
+
+				break;
+			}
+			//--------------------------------------------------------------------------
+			case IDC_BROWSE1: {
+				char *path = new char[255];
+				
+				chooseWindowsFile(path);
+
+				if (path[0] != '\0') {
+					SetDlgItemText(hWnd, IDC_OBJPATH, (LPSTR)path);
+				}
+
+				delete[] path;
+
+				break;
+			}
+			//--------------------------------------------------------------------------
+			case IDC_BROWSE2: {
+				char *path = new char[255];
+
+				chooseWindowsFile(path);
+
+				if (path[0] != '\0') {
+					SetDlgItemText(hWnd, IDC_TGAPATH, (LPSTR)path);
+				}
+
+				delete[] path;
 
 				break;
 			}
