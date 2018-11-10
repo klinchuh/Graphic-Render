@@ -2,6 +2,10 @@
 #include "math.h"
 #include "camera.h"
 
+#ifdef _WIN32
+#include <commdlg.h>
+#endif // DEBUG
+
 Scene *GlutController::scene;
 
 ShaderInterface *GlutController::shader;
@@ -26,10 +30,11 @@ int GlutController::WIDTH = 800, GlutController::HEIGHT = 600;
 float GlutController::scrollSpeed = 5, GlutController::cameraScale = 3;
 
 
+
 void GlutController::initController(int argc, char *argv[]) {
 	//Init glut Window
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_SINGLE);
 	glutInitWindowSize(WIDTH, HEIGHT);
 	glutInitContextVersion(3, 3);
 	glutInitContextProfile(GLUT_CORE_PROFILE);
@@ -52,7 +57,6 @@ void GlutController::initController(int argc, char *argv[]) {
 
 	//attach textures to shader
 	shader->attachTexture(0, "texture1");
-	shader->attachTexture(1, "texture2");
 
 	//init timers
 	initTimers();
@@ -60,12 +64,13 @@ void GlutController::initController(int argc, char *argv[]) {
 	//init Mouse, Motion, Keybork controllers
 	initMouseAndKeybord();
 
+	//init pop up menu
+	initMenu();
+
 	//init camera
 	initCamera();
 
 	//init main program loop
-	//void(GlutController::*tmp)() = &GlutController::displayController;
-	//(this->*tmp)();
 	glutDisplayFunc(displayController);
 
 	//On my intel intergated graphic chip don't work without it(don't render first cadr)
@@ -73,8 +78,9 @@ void GlutController::initController(int argc, char *argv[]) {
 }
 
 
+
 void GlutController::initCamera() {
-	*proj = glm::perspective(glm::radians(45.0f), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
+	*proj = glm::perspective(glm::radians(45.0f), (float)WIDTH / (float)HEIGHT, 0.1f, 1000.0f);
 
 
 	cameraPos = Camera::transAnglesToVector(f1, f2);
@@ -87,6 +93,20 @@ void GlutController::initCamera() {
 	shader->attachModelMatrix(*model);
 }
 
+void GlutController::initMenu() {
+	int k = glutCreateMenu(menuController);
+
+	//TO DO
+	glutAddMenuEntry("TO DO: Choose vertex shader", CHOOSE_VERTEX_SHADER);
+	//TO DO
+	glutAddMenuEntry("TO DO: Choose fragment shader", CHOOSE_FRAGMENT_SHADER);
+
+
+	glutAddMenuEntry("Choose texture(*.jpg)", CHOOSE_TEXTURE);
+	glutAddMenuEntry("Choose object(*.obj)", CHOOSE_OBJECT);
+	glutAttachMenu(GLUT_RIGHT_BUTTON);
+}
+
 
 void GlutController::initMouseAndKeybord() {
 	glutMouseFunc(mouseController);
@@ -96,22 +116,20 @@ void GlutController::initMouseAndKeybord() {
 
 
 void GlutController::initScene() {
-	scene = new Scene(2, 1);
+	scene = new Scene(1, 1);
 
 	scene->loadTexture(0, "gr\\african_head_diffuse.jpg");
-	scene->loadTexture(1, "gr\\african_head_diffuse.jpg");
 
 	scene->loadVAO(0, "gr\\african_head.obj");
 }
 
 void GlutController::timerController(int val) {
 	displayController();
-	glutTimerFunc(16, timerController, 0);
+	glutTimerFunc(1, timerController, 0);
 }
 
 void GlutController::initTimers() {
-	glutTimerFunc(16, timerController, 0);
-	//TO DO
+	glutTimerFunc(1, timerController, 0);
 }
 
 
@@ -135,12 +153,14 @@ void GlutController::mouseController(int button, int state, int x, int y) {
 		}
 		break;
 	}
+	//mouse wheel up
 	case 3: {
-		cameraScale += 0.15f;
+		cameraScale *= 1.02f;
 		break;
 	}
+	//mouse wheel down
 	case 4: {
-		cameraScale -= 0.15f;
+		cameraScale *= 0.98f;
 		if (cameraScale < 0.5f) {
 			cameraScale = 0.5f;
 		}
@@ -190,7 +210,7 @@ void GlutController::displayController() {
 	//Bind Vertex Array(VAO)
 	glBindVertexArray(scene->VAOs[0]);
 
-	//Draw current Vertex Array(VAO)
+	//Set up transforms matrices and Draw current Vertex Array(VAO)
 
 	cameraPos = Camera::transAnglesToVector(f1, f2);
 	cameraPos *= cameraScale;
@@ -200,8 +220,6 @@ void GlutController::displayController() {
 	*model = glm::translate(glm::mat4(), glm::vec3(0.0f, 0.0f, -1.0f));
 	shader->attachModelMatrix(*model);
 	glDrawArrays(GL_TRIANGLES, 0, scene->getVAOSize(0));
-
-	//glDrawArrays(GL_TRIANGLES, 0, 6); 
 
 	//Bend Standart Vertex Array
 	glBindVertexArray(0);
@@ -216,4 +234,63 @@ void GlutController::keyboardController(unsigned char key, int x, int y) {
 	//switch(key) {
 //
 	//}
+}
+
+void GlutController::menuController(int menuIdentificator) {
+
+	switch (menuIdentificator) {
+	case CHOOSE_VERTEX_SHADER: {
+		//TO DO
+		break;
+	}
+
+	case CHOOSE_FRAGMENT_SHADER: {
+		// TO DO
+		break;
+	}
+
+	case CHOOSE_TEXTURE: {
+		char *path = new char[255];
+		chooseWindowFile(path);
+		if (path[0] != '\0') {
+			scene->loadTexture(0, path);
+			shader->attachTexture(0, "texture1");
+		}
+		delete[] path;
+		break;
+	}
+
+	case CHOOSE_OBJECT: {
+		char *path = new char[255];
+		chooseWindowFile(path);
+		if (path[0] != '\0') {
+			scene->loadVAO(0, path);
+			shader->attachTexture(0, "texture1");
+		}
+		delete[] path;
+		break;
+	}
+	}
+}
+
+void GlutController::chooseWindowFile(char * path) {
+#ifdef _WIN32 
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	OPENFILENAME ofn = { 0 };
+	char szFileName[260];
+	ofn.lStructSize = sizeof(ofn);
+	ofn.hwndOwner = NULL;
+	ofn.lpstrFile = (LPSTR)path;
+	*(ofn.lpstrFile) = 0;
+	ofn.nMaxFile = 255;
+	ofn.lpstrFilter = NULL;
+	ofn.nFilterIndex = 1;
+	ofn.lpstrFileTitle = (LPSTR)szFileName;
+	*(ofn.lpstrFileTitle) = 0;
+	ofn.nMaxFileTitle = sizeof(szFileName);
+	ofn.lpstrInitialDir = NULL;
+	ofn.Flags = OFN_EXPLORER;
+	GetOpenFileName(&ofn);
+#endif // __WIN32__
 }
