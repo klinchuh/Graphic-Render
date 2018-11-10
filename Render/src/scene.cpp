@@ -5,13 +5,11 @@
 
 Scene::Scene(int texturesCount, int VAOsCount) {
 	VAOs = new GLuint[VAOsCount];
-	size = new int[VAOsCount];
+	VAOsSizes = new int[VAOsCount];
 	textures = new Texture[texturesCount];
 }
 
-
 Scene::~Scene() { }
-
 
 bool Scene::loadVAO(int num, const char *fileName) {
 
@@ -103,15 +101,35 @@ bool Scene::loadVAO(int num, const char *fileName) {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 
-	size[num] = finalData.size() / 5;
+	VAOsSizes[num] = finalData.size() / 5;
+
+	DEBUG_S(">>> Load VAO num " << num);
 
 	return true;
 }
 
+int Scene::addObject(int VAONum, int textureNum, glm::vec3 pos, glm::vec3 dir) {
+	objects.push_back(Object{ VAONum, textureNum, pos, dir });
+	DEBUG_S(">>> Add Object, current count: " << objects.size());
+	return (int)objects.size() - 1;
+}
+
+void Scene::bindObject(int id) {
+	glBindVertexArray(VAOs[objects[id].VAONum]);
+	textures[objects[id].textureId].bind(0);
+}
+
+glm::mat4 Scene::getModelMatrix(int id) {
+	glm::mat4 model;
+	model = rotate(model, -objects[id].direction[0], { 0.0f, 0.0f, 1.0f });
+	model = rotate(model, -objects[id].direction[1], { 0.0f, 1.0f, 0.0f });
+	model = rotate(model, -objects[id].direction[2], { 1.0f, 0.0f, 0.0f });
+	return glm::translate(glm::mat4(), objects[id].position) * model;
+}
 
 void Scene::loadTexture(int num, const char *path) {
 	textures[num] = Texture();
 
-	textures[num].load(path);
-	textures[num].loadToUnit(num);
+	textures[num].bind(num);
+	textures[num].load(num, path);
 }

@@ -6,6 +6,7 @@
 #include "controllerInterface.h"
 #include "scene.h"
 #include "shader.h"
+#include "camera.h"
 
 class GlutController : public ControllerInterface {
 private:
@@ -17,17 +18,9 @@ private:
 	static bool mouse_1_down, mouse_2_down;
 	static int curMouseX, curMouseY;
 
-	//Camera matrix:
-	static glm::mat4 *model, *view, *proj;
-
-
 	//Camera Config:
-	static glm::vec3 cameraPos;
-	static glm::vec3 cameraFront;
-	static glm::vec3 cameraUp;
-	static float f1, f2;
 	static int WIDTH, HEIGHT;
-	static float scrollSpeed, cameraScale;
+	static Camera *camera;
 
 	static enum { CHOOSE_VERTEX_SHADER, CHOOSE_FRAGMENT_SHADER, CHOOSE_TEXTURE, CHOOSE_OBJECT };
 

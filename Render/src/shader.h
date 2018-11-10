@@ -21,19 +21,19 @@ public:
 
 	//link GL_TEXTURE(NUM)(texture unit) and uniform sampler2D in fragment shader
 	//name - имя переменной в шейдоре
-	//num - номер тектурного юнита
+	//num - номер юнита
 	void attachTexture(int num, const char *name) const {
 		glUniform1i(glGetUniformLocation(ID, name), num);
 	}
 
 	//load View matrix in shader
-	void attachViewMatrix(glm::mat4) const;
+	void attachViewMatrix(glm::mat4*) const;
 
 	//load projection(perspectiv view) matrix in shader
-	void attachProjectionMatrix(glm::mat4) const;
+	void attachProjectionMatrix(glm::mat4*) const;
 
 	//load model matrix in shader
-	void attachModelMatrix(glm::mat4) const;
+	void attachModelMatrix(glm::mat4*) const;
 
 	//Bind our shader as current
 	void use() const;

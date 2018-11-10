@@ -14,11 +14,11 @@ public:
 	//Load texture to memory(GPU?) from disk
 	//Path - path to *.jpg file
 	//Texture load only ones
-	void load(const char *path);
+	void load(GLuint num, const char *path);
 
 	//Load texture to shader texture unit
 	//num - number of unit (from 0 to 15)
-	void loadToUnit(GLuint num);
+	void bind(GLuint num);
 
 	~Texture();
 };

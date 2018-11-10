@@ -121,20 +121,20 @@ void Shader::use() const {
 }
 
 
-void Shader::attachViewMatrix(glm::mat4 viewMatrix) const {
+void Shader::attachViewMatrix(glm::mat4 *viewMatrix) const {
 	unsigned int transformLoc = glGetUniformLocation(ID, "view");
-	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(viewMatrix));
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, (const GLfloat*)viewMatrix);
 	//DEBUG_S("View matrix loaded");
 }
 
-void Shader::attachProjectionMatrix(glm::mat4 projectionMatrix) const {
+void Shader::attachProjectionMatrix(glm::mat4 *projectionMatrix) const {
 	unsigned int transformLoc = glGetUniformLocation(ID, "projection");
-	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, (const GLfloat*)projectionMatrix);
 	//DEBUG_S("projection matrix loaded");
 }
 
-void Shader::attachModelMatrix(glm::mat4 modelMatrix) const {
+void Shader::attachModelMatrix(glm::mat4 *modelMatrix) const {
 	unsigned int transformLoc = glGetUniformLocation(ID, "model");
-	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, (const GLfloat*)(modelMatrix));
 	//DEBUG_S("model matrix loaded");
 }
