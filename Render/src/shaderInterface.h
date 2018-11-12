@@ -8,11 +8,11 @@ class ShaderInterface
 public:
 	virtual void attachTexture(int , const char *) const = 0;
 
-	virtual void attachViewMatrix(glm::mat4) const = 0;
+	virtual void attachViewMatrix(glm::mat4*) const = 0;
 
-	virtual void attachProjectionMatrix(glm::mat4) const = 0;
+	virtual void attachProjectionMatrix(glm::mat4*) const = 0;
 
-	virtual void attachModelMatrix(glm::mat4) const = 0;
+	virtual void attachModelMatrix(glm::mat4*) const = 0;
 
 	virtual void use() const = 0;
 };

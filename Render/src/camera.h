@@ -7,24 +7,41 @@
 
 class Camera {
 private:
-	glm::vec3 cameraPos;
-	glm::vec3 cameraFront;
-	glm::vec3 cameraUp;
+	int WIDTH, HEIGHT;
+	glm::mat4 *view, *proj;
+	glm::vec3 cameraPos, cameraFront, cameraUp;
 	float yaw, pitch;
 	float scrollSpeed, cameraScale;
+
+	glm::vec3 transAnglesToVector(float f1, float f2);
+
+	void reCountView();
+
 public:
 
+	Camera(int width, int height);
+
+	~Camera();
 
 
-	static glm::vec3 transAnglesToVector(float f1, float f2) {
-		glm::vec3 answer;
-		answer.x = cos(glm::radians(f1)) * cos(glm::radians(f2));
-		answer.y = sin(glm::radians(f2));
-		answer.z = sin(glm::radians(f1)) * cos(glm::radians(f2));
-		answer = glm::normalize(answer);
+	void setScrollSpeed(float speed);
 
-		return answer;
-	}
+	void setCameraScale(float scale);
+
+
+	void scaleOut();
+
+	void scaleIn();
+
+	
+	void modifYaw(float move);
+
+	void modifPitch(float move);
+
+
+	glm::mat4* getViewMatrix();
+
+	glm::mat4* getProjectionMatrix();
 };
 
 #endif // !CAMERA_H

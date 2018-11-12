@@ -6,6 +6,7 @@
 #include "controllerInterface.h"
 #include "scene.h"
 #include "shader.h"
+#include "camera.h"
 
 class GlutController : public ControllerInterface {
 private:
@@ -17,20 +18,11 @@ private:
 	static bool mouse_1_down, mouse_2_down;
 	static int curMouseX, curMouseY;
 
-	//Camera matrix:
-	static glm::mat4 *model, *view, *proj;
-
-
 	//Camera Config:
-	static glm::vec3 cameraPos;
-	static glm::vec3 cameraFront;
-	static glm::vec3 cameraUp;
-	static float f1, f2;
 	static int WIDTH, HEIGHT;
-	static float scrollSpeed, cameraScale;
+	static Camera *camera;
 
-public:
-	GlutController() {}
+	static enum { CHOOSE_VERTEX_SHADER, CHOOSE_FRAGMENT_SHADER, CHOOSE_TEXTURE, CHOOSE_OBJECT };
 
 	//Initializing of Mouse and Leybord processor
 	void initMouseAndKeybord();
@@ -44,11 +36,11 @@ public:
 	//Initializing of shader
 	void initShader();
 
-	//Main init function, call first
-	void initController(int argc, char *argv[]);
-
 	//init camera and translate matrices
 	void initCamera();
+
+	//init pop-up menu
+	void initMenu();
 
 	//Main loop processor
 	static void displayController();
@@ -61,9 +53,23 @@ public:
 
 	//keyboardController
 	static void keyboardController(unsigned char key, int x, int y);
-
+	
+	//
 	static void timerController(int val);
 
+	//Menu controller
+	static void menuController(int);
+
+	//Get path to file by systems calls
+	//TO DO to LINUX
+	static void chooseWindowFile(char * path);
+
+public:
+
+	GlutController() {}
+
+	//Main init function, call first
+	void initController(int argc, char *argv[]);
 };
 
 #endif // !GLUTCONTROLLER_H

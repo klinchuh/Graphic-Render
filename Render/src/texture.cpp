@@ -3,13 +3,16 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-void Texture::load(const char *path) {
+void Texture::load(GLuint num, const char *path) {
 	if (ID != -1) {
 		ERROR_FLT("Double loading of texture");
 		return;
 	}
 
 	glGenTextures(1, &ID);
+
+	glActiveTexture(GL_TEXTURE0 + num);
+
 	glBindTexture(GL_TEXTURE_2D, ID);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
@@ -36,19 +39,10 @@ void Texture::load(const char *path) {
 	stbi_image_free(data);
 }
 
-
-void Texture::loadToUnit(GLuint num) {
-	if (ID == -1) {
-		ERROR_FLT("Loading not init texture");
-		return;
-	}
-
+void Texture::bind(GLuint num) {
 	glActiveTexture(GL_TEXTURE0 + num);
 	glBindTexture(GL_TEXTURE_2D, ID);
-
-	DEBUG_S(">>> Texture loaded to " << num << " unit");
 }
-
 
 Texture::~Texture() {
 	if (ID != -1) {
