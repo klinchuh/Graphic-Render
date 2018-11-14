@@ -26,6 +26,10 @@ public:
 		glUniform1i(glGetUniformLocation(ID, name), num);
 	}
 
+	void setVec3(const char *name, glm::vec3 vec) {
+		glUniform3f(glGetUniformLocation(ID, name), vec[0], vec[1], vec[2]);
+	}
+
 	//load View matrix in shader
 	void attachViewMatrix(glm::mat4*) const;
 

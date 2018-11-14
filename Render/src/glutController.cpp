@@ -115,6 +115,7 @@ void GlutController::initShader() {
 	shader = new Shader("shd\\test.vert", "shd\\test.frag");
 	shader->use();
 	shader->attachTexture(0, "texture1");
+	shader->setVec3("lightVec", glm::vec3{ 0.0f, 1.0f, 1.0f });
 }
 
 void GlutController::mouseController(int button, int state, int x, int y) {
@@ -166,10 +167,13 @@ void GlutController::displayController() {
 
 	//Bind Our Shader
 	shader->use();
+	shader->setVec3("lightVec", camera->getCamDir());
 
 	//Set up transforms matrices
 	shader->attachViewMatrix(camera->getViewMatrix());
 	shader->attachProjectionMatrix(camera->getProjectionMatrix());
+
+
 
 	//render every object
 	for (int i = 0; i < scene->getObjectsCount(); i++) {

@@ -14,6 +14,8 @@ public:
 
 	virtual void attachModelMatrix(glm::mat4*) const = 0;
 
+	virtual void setVec3(const char *, glm::vec3) = 0;
+
 	virtual void use() const = 0;
 };
 

@@ -42,6 +42,11 @@ public:
 	glm::mat4* getViewMatrix();
 
 	glm::mat4* getProjectionMatrix();
+
+	
+	glm::vec3 getCamDir() {
+		return transAnglesToVector(yaw, pitch);
+	}
 };
 
 #endif // !CAMERA_H
