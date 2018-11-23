@@ -1,17 +1,16 @@
 #include "scene.h"
 #include <iostream>
 #include <sstream>
-#include <regex>
 
-Scene::Scene(int texturesCount, int VAOsCount) {
+Scene::Scene(size_t texturesCount, size_t VAOsCount) {
 	VAOs = new GLuint[VAOsCount];
-	VAOsSizes = new int[VAOsCount];
+	VAOsSizes = new size_t[VAOsCount];
 	textures = new Texture[texturesCount];
 }
 
 Scene::~Scene() { }
 
-bool Scene::loadVAO(int num, const char *fileName) {
+bool Scene::loadVAO(size_t num, const char *fileName) {
 
 	std::ifstream is(fileName);
 	std::string s;
@@ -56,9 +55,6 @@ bool Scene::loadVAO(int num, const char *fileName) {
 		}
 		
 		if (s == "f") {
-
-
-			
 			int v1, v2, v3, vn1, vn2, vn3, vt1, vt2, vt3, v4, vt4, vn4;
 			char trash;
 			
@@ -171,18 +167,18 @@ bool Scene::loadVAO(int num, const char *fileName) {
 	return true;
 }
 
-int Scene::addObject(int VAONum, int textureNum, glm::vec3 pos, glm::vec3 dir) {
+size_t Scene::addObject(size_t VAONum, size_t textureNum, glm::vec3 pos, glm::vec3 dir) {
 	objects.push_back(Object{ VAONum, textureNum, pos, dir });
 	DEBUG_S(">>> Add Object, current count: " << objects.size());
 	return (int)objects.size() - 1;
 }
 
-void Scene::bindObject(int id) {
+void Scene::bindObject(size_t id) {
 	glBindVertexArray(VAOs[objects[id].VAONum]);
 	textures[objects[id].textureId].bind(0);
 }
 
-glm::mat4 Scene::getModelMatrix(int id) {
+glm::mat4 Scene::getModelMatrix(size_t id) {
 	glm::mat4 model;
 	model = rotate(model, -objects[id].direction[0], { 0.0f, 0.0f, 1.0f });
 	model = rotate(model, -objects[id].direction[1], { 0.0f, 1.0f, 0.0f });
@@ -190,7 +186,7 @@ glm::mat4 Scene::getModelMatrix(int id) {
 	return glm::translate(glm::mat4(), objects[id].position) * model;
 }
 
-void Scene::loadTexture(int num, const char *path) {
+void Scene::loadTexture(size_t num, const char *path) {
 	textures[num] = Texture();
 
 	textures[num].bind(num);

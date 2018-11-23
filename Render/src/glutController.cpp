@@ -176,7 +176,7 @@ void GlutController::displayController() {
 
 
 	//render every object
-	for (int i = 0; i < scene->getObjectsCount(); i++) {
+	for (size_t i = 0; i < scene->getObjectsCount(); i++) {
 
 		//Bind Vertex Array(VAO) and texture
 		scene->bindObject(i);
