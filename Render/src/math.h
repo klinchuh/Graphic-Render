@@ -3,9 +3,7 @@
 
 #include "basicLibs.h"
 
-class Math {
-public:
-
+namespace Math {
 	/*Length of vector*/
 	static float _length(const glm::vec3 &v);
 

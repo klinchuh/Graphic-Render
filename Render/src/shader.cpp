@@ -8,8 +8,6 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath) {
 	std::string vertexCode, fragmentCode;
 	std::ifstream vertexFile, fragmentFile;
 
-
-
 	//reading shaders from disk to memory
 	try {
 		//set up exceptions to streams
@@ -84,7 +82,6 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath) {
 	glDeleteShader(fragmentShader);
 }
 
-
 void Shader::checkCompileErrors(GLuint shader, const std::string &type) {
 #ifdef DEBUG_LOG
 	GLint success;
@@ -115,11 +112,9 @@ void Shader::checkCompileErrors(GLuint shader, const std::string &type) {
 #endif // !DEBUG_LOG
 }
 
-
 void Shader::use() const {
 	glUseProgram(ID);
 }
-
 
 void Shader::attachViewMatrix(glm::mat4 *viewMatrix) const {
 	unsigned int transformLoc = glGetUniformLocation(ID, "view");

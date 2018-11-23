@@ -26,6 +26,11 @@ public:
 		glUniform1i(glGetUniformLocation(ID, name), num);
 	}
 
+	//add uniform to shader
+	void setVec3(const char *name, glm::vec3 vec) {
+		glUniform3f(glGetUniformLocation(ID, name), vec[0], vec[1], vec[2]);
+	}
+
 	//load View matrix in shader
 	void attachViewMatrix(glm::mat4*) const;
 
@@ -41,6 +46,11 @@ public:
 	//return ID
 	GLuint getId() {
 		return ID;
+	}
+
+	~Shader() {
+		glUseProgram(0);
+		glDeleteProgram(this->ID);
 	}
 
 private:

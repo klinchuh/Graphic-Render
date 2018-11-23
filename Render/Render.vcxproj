@@ -37,7 +37,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -216,6 +216,14 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="gr\african_head.obj">
+      <FileType>Document</FileType>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="gr\cat.obj">
+      <FileType>Document</FileType>
+    </Media>
+    <Media Include="gr\diablo3_pose.obj">
       <FileType>Document</FileType>
     </Media>
   </ItemGroup>

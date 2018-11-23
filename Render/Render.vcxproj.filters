@@ -104,5 +104,11 @@
     <Media Include="gr\african_head.obj">
       <Filter>Resource Files</Filter>
     </Media>
+    <Media Include="gr\diablo3_pose.obj">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="gr\cat.obj">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>
