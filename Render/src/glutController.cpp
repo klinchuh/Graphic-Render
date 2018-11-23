@@ -174,7 +174,6 @@ void GlutController::displayController() {
 	shader->attachProjectionMatrix(camera->getProjectionMatrix());
 
 
-
 	//render every object
 	for (size_t i = 0; i < scene->getObjectsCount(); i++) {
 

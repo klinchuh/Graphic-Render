@@ -88,7 +88,7 @@ bool Scene::loadVAO(size_t num, const char *fileName) {
 			finalData.push_back(vertexNormals[vn3 - 1][2]);
 
 
-			//TO DO(èñïðàâèòü ãîâíîêîä)
+			//TO DO(Ã¨Ã±Ã¯Ã°Ã Ã¢Ã¨Ã²Ã¼ Ã£Ã®Ã¢Ã­Ã®ÃªÃ®Ã¤)
 			std::string str;
 
 			std::getline(is, str);
@@ -144,15 +144,15 @@ bool Scene::loadVAO(size_t num, const char *fileName) {
 	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBOs[0]);
 	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-	//Set Atribut(VAOs) pointer ¹0 (vertex)
+	//Set Atribut(VAOs) pointer Â¹0 (vertex)
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
 	glEnableVertexAttribArray(0);
 
-	//Set Atribut(VAOs) pointer ¹1 (texture coord)
+	//Set Atribut(VAOs) pointer Â¹1 (texture coord)
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(1);
 
-	//Set Atribut(VAOs) pointer ¹2 (normal vectors)
+	//Set Atribut(VAOs) pointer Â¹2 (normal vectors)
 	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(5 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(2);
 
@@ -167,16 +167,19 @@ bool Scene::loadVAO(size_t num, const char *fileName) {
 	return true;
 }
 
+
 size_t Scene::addObject(size_t VAONum, size_t textureNum, glm::vec3 pos, glm::vec3 dir) {
 	objects.push_back(Object{ VAONum, textureNum, pos, dir });
 	DEBUG_S(">>> Add Object, current count: " << objects.size());
 	return (int)objects.size() - 1;
 }
 
+
 void Scene::bindObject(size_t id) {
 	glBindVertexArray(VAOs[objects[id].VAONum]);
 	textures[objects[id].textureId].bind(0);
 }
+
 
 glm::mat4 Scene::getModelMatrix(size_t id) {
 	glm::mat4 model;

@@ -54,13 +54,31 @@ public:
 	//id = id of object
 	glm::mat4 getModelMatrix(size_t id);
 
+	//Add Object
+	// VAONum - number of object's mesh
+	// textureNum - number of texture unit
+	// pos - position of object in space
+	// dir - roll/yaw/pitch of object;
+	// return id of object aka cuurent count of objects - 1
+	int addObject(int VAONum, int textureNum, glm::vec3 pos, glm::vec3 dir);
+
+	//Bint object's VAO(Mesh) and texture
+	//id - Id of object
+	void bindObject(int id);
+
+	//return model Matrix to object
+	//id = id of object
+	glm::mat4 getModelMatrix(int id);
+
 	//return count of verteces in VAO
 	//num - number of VAO
+
 	size_t getObjectMeshSize(size_t num) {
 		return VAOsSizes[objects[num].VAONum];
 	}
 
 	//return count of objects
+
 	size_t getObjectsCount() {
 		return objects.size();
 	}
