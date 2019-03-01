@@ -5,10 +5,10 @@
 
 namespace Math {
 	/*Length of vector*/
-	static float _length(const glm::vec3 &v);
+	static float length(const glm::vec3 &v);
 
 	/*Square of triangle*/
-	static float _square(const glm::vec2 &v1, const glm::vec2 &v2, const glm::vec2 &v3);
+	static float square(const glm::vec2 &v1, const glm::vec2 &v2, const glm::vec2 &v3);
 
 	/*Normalize vector*/
 	static glm::vec3 normalize(const glm::vec3 &v);
