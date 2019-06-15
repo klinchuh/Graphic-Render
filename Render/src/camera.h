@@ -38,7 +38,6 @@ public:
 
 	void modifPitch(float move);
 
-
 	glm::mat4* getViewMatrix();
 
 	glm::mat4* getProjectionMatrix();
